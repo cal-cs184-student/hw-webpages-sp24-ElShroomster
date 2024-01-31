@@ -1,15 +1,17 @@
 body {
-  background-color: #313338;
+  background-color: #052c4f;
 }
 h2 {
-  color: #313338;
-  background-color: white;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 h3 {
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 p {
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .p2 {
