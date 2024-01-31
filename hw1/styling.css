@@ -1,16 +1,16 @@
 body {
-  background-color: #052c4f;
+  background-color: white;
 }
 h2 {
-  color: white;
+  color: #111317;
   font-family: Arial, Helvetica, sans-serif;
 }
 h3 {
-  color: white;
+  color:  #111317;
   font-family: Arial, Helvetica, sans-serif;
 }
 p {
-  color: white;
+  color:  #111317;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,7 +19,4 @@ p {
 }
 .p3 {
   font-family: "Lucida Console", "Courier New", monospace;
-}
-ul {
-  color: white;
 }
