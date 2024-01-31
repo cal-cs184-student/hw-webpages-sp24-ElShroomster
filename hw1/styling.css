@@ -15,8 +15,12 @@ p {
 }
 
 .p2 {
-  font-family: Arial, Helvetica, sans-serif;
+   font-family: "Lucida Console", "Courier New", monospace;
 }
 .p3 {
   font-family: "Lucida Console", "Courier New", monospace;
+}
+ul {
+  color:  #111317;
+  font-family: Arial, Helvetica, sans-serif;
 }
