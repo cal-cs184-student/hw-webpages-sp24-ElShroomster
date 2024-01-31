@@ -20,7 +20,12 @@ p {
 .p3 {
   font-family: "Lucida Console", "Courier New", monospace;
 }
-ul {
+.ul {
   color:  #111317;
   font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content horizontally */
 }
