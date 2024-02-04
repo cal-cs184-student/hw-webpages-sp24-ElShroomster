@@ -7,15 +7,15 @@ body {
 }
 h2 {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 h3 {
   color:  white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 p {
   color:  white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .p2 {
@@ -26,7 +26,7 @@ p {
 }
 .ul {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 .container {
   display: flex;
