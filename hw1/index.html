@@ -12,54 +12,22 @@
 		<a style="color: gray", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/">https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/</a>
 		
 		<h3><b>Single Color Triangles</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Walk through how you rasterize triangles in your own words: <i>todo</i></li>
-			<li> Explain how your algorithm is no worse than one that checks each sample within the bounding box of the triangle: <i>todo</i></li>
-			<li> Show a png screenshot of basic/test4.svg with the default viewing parameters and with the pixel inspector centered on an interesting part of the scene: <i>todo</i></li>
-			<li> Extra credit: Explain any special optimizations you did beyond simple bounding box triangle rasterization, with a timing comparison table: <i>todo</i></li>
-			<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/svg4_pixel_inspector.png" alt="Description" class="center">
-			<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/rounding_error.png" alt="Description" class="center">
-		</ul>
+		<p style="color: white">To rasterize a triangle, we check a grid pixel by pixel to test whether each point lies within the three triangle vertices. We do this mathematically by creating a normal vector pointing inwards from each of our edges, and testing whether the dot product of a vector between our point and the vertex and the normal vector is greater than zero. Instead of sampling the entire screen space, we limited the number of tests we do per triangle to just the ones inside the bounding box of the triangle. To do this, we simply sampled each pixel between the leftmost and rightmost x-coordinate in our triangle’s vertices, and likewise for the highest and lowest y-coordinate. In this process, we faced two challenges. Firstly, for our algorithm to work, we needed to ensure that the normal vectors actually pointed into the triangle. In order to make this work, we tested the winding order of the vertices using <a href="https://stackoverflow.com/a/1165943" style="display: inline"> this</a> formula. After adjusting our vertices so that they are in counter-clockwise order, we had to sample our pixels. Here lies our second, and final, bug that our code had: bounding boxes. Initially, we made it so that the bounding box would round our minimum and maximum values of x and y, which caused many triangles to not render fully, as shown below:</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/svg4_pixel_inspector.png" alt="Description" class="center">
+		<p style="color: white">By addressing these issues, we got basic rasterizing to work! Below is an image of a successful render highlighting a major drawback with this algorithm, aliasing, in basic/test4.svg:</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/rounding_error.png" alt="Description" class="center">
 		<br>
 		<h3><b>Antialiasing by Supersampling</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Walk through your supersampling algorithm and data structures. Why is supersampling useful? What modifications did you make to the rasterization pipeline in the process? Explain how you used supersampling to antialias your triangles: <i>todo</i></li>
-			<li> Show png screenshots of basic/test4.svg with the default viewing parameters and sample rates 1, 4, and 16 to compare them side-by-side. Position the pixel inspector over an area that showcases the effect dramatically; for example, a very skinny triangle corner. Explain why these results are observed: <i>todo</i></li>
-			<li> Extra credit: If you implemented alternative antialiasing methods, describe them and include comparison pictures demonstrating the difference between your method and grid-based supersampling: <i>todo</i></li>
-		</ul>
 		<br>
 		<h3><b>Transforms</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Explain what you were trying to do with cubeman in words: <i>todo</i></li>
-			<li> Extra Credit: What additional feature did you add: <i>todo</i></li>
-		</ul>
 		<br>
 		<h3><b>Barycentric Coordinates</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Explain barycentric coordinates in your own words and use an image to aid you in your explanation: <i>todo</i></li>
-			<li> Show a png screenshot of svg/basic/test7.svg with default viewing parameters and sample rate 1: <i>todo</i></li>
-		</ul>
 		<br>
 		<h3><b>Pixel Sampling for Textures</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Explain pixel sampling in your own words and describe how you implemented it to perform texture mapping: <i>todo</i></li>
-			<li> Show and compare four png screenshots using nearest sampling at 1 sample per pixel, nearest sampling at 16 samples per pixel, bilinear sampling at 1 sample per pixel, and bilinear sampling at 16 samples per pixel: <i>todo</i></li>
-			<li> Comment on the relative differences. Discuss when there will be a large difference between the two methods and why: <i>todo</i></li>
-		</ul>
 		<br>
 		<h3><b>Level Sampling with Mipmaps for Textures</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Explain level sampling in your own words and describe how you implemented it for texture mapping: <i>todo</i></li>
-			<li> Describe the tradeoffs between speed, memory usage, and antialiasing power between the three various techniques: <i>todo</i></li>
-			<li> Using a png file you find yourself, show us four versions of the image, using the combinations of L_ZERO and P_NEAREST, L_ZERO and P_LINEAR, L_NEAREST and P_NEAREST, as well as L_NEAREST and P_LINEAR: <i>todo</i></li>
-			<li> Extra credit: If you implemented any extra filtering methods, describe them and show comparisons between your results with the other above methods: <i>todo</i></li>
-		</ul>
 		<br>
 		<h3><b>Extra Credit</b></h3>
-		<ul style="color: white", class="dashed">
-			<li> Save your best svg file as competition.svg in your docs/ directory, and show us a 800x800 png screenshot of it in your write-up: <i>todo</i></li>
-			<li> Explain how you did it. If you wrote a script to generate procedural svg files, include it in your submission in the src/ directory and briefly explain how it works: <i>todo</i></li>
-		</ul>
 		<br>
 	</body>
 </html>
