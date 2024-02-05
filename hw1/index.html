@@ -20,9 +20,17 @@
 		<br>
 		<h3><b>Antialiasing by Supersampling</b></h3>
 		<p style="color: white; width: 75%">    In order to reduce aliasing such as jaggies and floating pixels, we use supersampling. We set a sample rate and sample multiple evenly spaced points inside each pixel, then average them to get the total color of that pixel. This means that if a triangle has some area inside a pixel but doesn’t go through the center, we can still ensure that the figure gets equal representation. For example, if the triangle goes through the top right corner, that would be approximately 1/9 of the pixel’s area, so we would give that pixel 1/9th of the triangle’s color. Initially, we thought it would be more space efficient to keep our screen space array the same dimensions, and simply average down each pixel as we rasterize each triangle. This sounded like a great idea, but when multiple triangles were slightly in a single pixel, this prevented the final pixel color from incorporating all of the triangles involved. Instead, we got weird bright lines cutting through our images. In the end, we decided to multiply the dimensions of our screen space matrix by the sample rate, then rasterize each triangle in our svg by pretending the screen was simply much larger. To draw the matrix onto the screen, we then averaged down for each pixel. Below is an example of supersampling, using 1, 4, and 16 points inside each pixel, reducing aliasing in the same image represented above: </p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red1x1.png" alt="Description" class="column">
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red2x2.png" alt="Description" class="column">
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red4x4.png" alt="Description" class="column">
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red1x1.png" alt="Description" class="column">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red2x2.png" alt="Description" class="column">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/red4x4.png" alt="Description" class="column">
+			</div>
+		</div>
 		<br>
 		<p style="color: white; width: 75%">    <i>Todo: Exta credit</i></p>
 		<br>
