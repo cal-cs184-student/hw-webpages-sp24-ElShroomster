@@ -37,10 +37,10 @@ p {
 }
 .center {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 20%;
+  margin: auto;
+  width: 50%;
   height: auto;
+  padding: 10px;
 }
 
 .main-page-content {
