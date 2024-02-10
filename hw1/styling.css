@@ -35,13 +35,13 @@ p {
   width: 60%;
   justify-content: center;
 }
-.center {
+/*.center {
   display: block;
   margin: auto;
   width: 50%;
   height: auto;
   padding: 10px;
-}
+}*/
 
 .main-page-content {
     overflow-wrap: break-word;
