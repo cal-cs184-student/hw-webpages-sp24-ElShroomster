@@ -4,6 +4,7 @@
 	</div>
 	<head>
  		<link rel="stylesheet" href="styling.css">
+		<a style="color: #212427", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/"> Main Page</a>
 		<Title>Homework 1 - Rasterizer</Title>
 	</head>
 	<body>
@@ -11,7 +12,6 @@
 		<center>
 		<h5 style="color: #212427">by Sriram Srivatsan &#40;sriram.srivatsan &#40;at&#41; berkeley.edu&#41; and Jaron Erba &#40;jaronerba &#40;at&#41; berkeley.edu&#41;</h5>
 		</center>
-		<a style="color: #212427", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/">https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/</a>
 		
 		<h3><b>Single Color Triangles</b></h3>
 		<p style="color: #212427; width: 100%">    To rasterize a triangle, we check a grid pixel by pixel to test whether each point lies within the three triangle vertices. We do this mathematically by creating a normal vector pointing inwards from each of our edges, and testing whether the dot product of a vector between our point and the vertex and the normal vector is greater than zero. Instead of sampling the entire screen space, we limited the number of tests we do per triangle to just the ones inside the bounding box of the triangle. To do this, we simply sampled each pixel between the leftmost and rightmost x-coordinate in our triangle’s vertices, and likewise for the highest and lowest y-coordinate. In this process, we faced two challenges. Firstly, for our algorithm to work, we needed to ensure that the normal vectors actually pointed into the triangle. In order to make this work, we tested the winding order of the vertices using <a href="https://stackoverflow.com/a/1165943" style="display: inline"> this</a> formula. After adjusting our vertices so that they are in counter-clockwise order, we had to sample our pixels. Here lies our second, and final, bug that our code had: bounding boxes. Initially, we made it so that the bounding box would round our minimum and maximum values of x and y, which caused many triangles to not render fully, as shown below:</p>
