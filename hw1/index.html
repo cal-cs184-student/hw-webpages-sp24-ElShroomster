@@ -1,6 +1,6 @@
 <html>
 	<div class="container">
-  		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/radical3.png" alt="Radical Rasterizers">
+  		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/radical3.png" alt="Radical Rasterizers">
 	</div>
 	<head>
  		<link rel="stylesheet" href="styling.css">
@@ -15,23 +15,23 @@
 
 		<h3><b>Single Color Triangles</b></h3>
 		<p style="color: #212427; width: 100%">    To rasterize a triangle, we check a grid pixel by pixel to test whether each point lies within the three triangle vertices. We do this mathematically by creating a normal vector pointing inwards from each of our edges, and testing whether the dot product of a vector between our point and the vertex and the normal vector is greater than zero. Instead of sampling the entire screen space, we limited the number of tests we do per triangle to just the ones inside the bounding box of the triangle. To do this, we simply sampled each pixel between the leftmost and rightmost x-coordinate in our triangle’s vertices, and likewise for the highest and lowest y-coordinate. In this process, we faced two challenges. Firstly, for our algorithm to work, we needed to ensure that the normal vectors actually pointed into the triangle. In order to make this work, we tested the winding order of the vertices using <a href="https://stackoverflow.com/a/1165943" style="display: inline"> this</a> formula. After adjusting our vertices so that they are in counter-clockwise order, we had to sample our pixels. Here lies our second, and final, bug that our code had: bounding boxes. Initially, we made it so that the bounding box would round our minimum and maximum values of x and y, which caused many triangles to not render fully, as shown below:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/rounding_error.png" alt="Rounding Error" class="center">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/rounding_error.png" alt="Rounding Error" class="center">
 		<p style="color: #212427; width: 100%">    By addressing these issues, we got basic rasterizing to work! Below is an image of a successful render highlighting a major drawback with this algorithm, aliasing, in basic/test4.svg:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/svg4_pixel_inspector.png" alt="svg4 Aliased" class="center">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/svg4_pixel_inspector.png" alt="svg4 Aliased" class="center">
 		<p style="color: #212427; width: 100%">    For the extra credit, we found a few ways to optimize the rendering script, mostly through precalculation of equations. Our original rendering method was already decently efficient, but it had one large drawback: we were doing a lot of calculation within the for loops. So, we decided to move the calculations of all the vectors out of the nested loops. The vectors that were the most complex to precalculate were p-p0, p-p1, and p-p2, since these had to change each loop. But, these can be set by simply doing a few additions each loop, as opposed to using expensive multiplication. As can be seen by the image below, the new code was about 12% faster.</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/beforeafter2.png" class="center">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/beforeafter2.png" class="center">
 		<br>
 		<h3><b>Antialiasing by Supersampling</b></h3>
 		<p style="color: #212427; width: 100%">    In order to reduce aliasing such as jaggies and floating pixels, we use supersampling. We set a sample rate and sample multiple evenly spaced points inside each pixel, then average them to get the total color of that pixel. This means that if a triangle has some area inside a pixel but doesn’t go through the center, we can still ensure that the figure gets equal representation. For example, if the triangle goes through the top right corner, that would be approximately 1/9 of the pixel’s area, so we would give that pixel 1/9th of the triangle’s color. Initially, we thought it would be more space efficient to keep our screen space array the same dimensions, and simply average down each pixel as we rasterize each triangle. This sounded like a great idea, but when multiple triangles were slightly in a single pixel, this prevented the final pixel color from incorporating all of the triangles involved. Instead, we got weird bright lines cutting through our images. In the end, we decided to multiply the dimensions of our screen space matrix by the sample rate, then rasterize each triangle in our svg by pretending the screen was simply much larger. To draw the matrix onto the screen, we then averaged down for each pixel. Below is an example of supersampling, using 1, 4, and 16 points inside each pixel, reducing aliasing in the same image represented above: </p>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/red1x1.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red1x1.png" alt="svg4 Aliased">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/red2x2.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red2x2.png" alt="svg4 Slightly Aliased">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/image/red4x4.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red4x4.png" alt="svg4 Less Aliased">
 			</div>
 		</div>
 		<br>
@@ -43,7 +43,7 @@
 		<br>
 		<h3><b>Barycentric Coordinates</b></h3>
 		<p style="color: #212427; width: 100%">    Barycentric coordinates are a neat way to represent the location of a point relative to the vertices of a triangle. Using this method, we were able to represent our point by fractions, each fraction describing how close our point was to a vertex compared to the opposing edge. This allowed us to use three different colors on each of the vertices, and divide them up so we could get a cool gradient. The hardest part about this assignment was the amount of arithmetic involved. Finding the values wasn't too bad, but brainstorming to making the algorithm efficient took up a lot of energy. Nobody really wants to do a thousand multiplies and adds for 20 pixels. Below is a visual description of barycentric coordinates I stole from <a href="https://mathematica.stackexchange.com/q/246858" style="display: inline">Mathematics Stack Exchange</a>:</p>
-		<img src="https://i.stack.imgur.com/SeHln.png" alt="svg4 Less Aliased" class="center">
+		<img src="https://i.stack.imgur.com/SeHln.png" alt="Cool Diagram" class="center">
 		<p style="color: #212427; width: 100%"> Below is a picture of a color gradient wheel which was rasterized using barycentric coordinates:</p>
 		<p style="color: #212427; width: 100%">    <i>Todo: barycentric image</i></p>
 		<br>
