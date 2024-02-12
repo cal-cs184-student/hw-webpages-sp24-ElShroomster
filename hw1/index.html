@@ -46,7 +46,16 @@
 			</div>
 		</div>
 		<br>
-		<p style="color: #212427; width: 100%">    <i>Todo: Exta credit</i></p>
+		<p style="color: #212427; width: 100%">    For extra credit, we decided to implement randomized supersampling. When implementing this method, we noticed that borders became more fuzzy, making a cool effect if you want to rasterize a teddy bear but otherwise not too great of a method. Unfortunately, increasing sample frequency did make the teddy bear-ness go away, but it did make the image look more cleaner. We also made redraw be forced every couple milliseconds for a test, and what came out was a very interesting animation that we didn't record :(. Corner cases where our method is better than grid sampling is at the corner of very long triangles. Our method makes us have higher probability of not having pixel islands as shown below:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/grid_supersampling.png" alt="grid supersampling">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/random_supersampling.png" alt="random supersampling">
+			</div>
+		</div>
+		<p style="color: #212427; width: 100%">    Left - Grid, Right - Random, Both using 4x4 Supersampling</p>
 		<br>
 		<h3><b>Transforms</b></h3>
 		<p style="color: #212427; width: 100%">    Transforms were honestly pretty easy. All we had to do was change the translation/rotation/scale functions to return a matrix that when multiplied by our current vector in homogeneous coordinates would result in a transformed vector. By modifying the cubeman svg, we were able to make him elastic by stretching his limbs out. I honestly think he's very good at yoga :)</p>
