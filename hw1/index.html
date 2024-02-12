@@ -40,7 +40,18 @@
 		<h3><b>Transforms</b></h3>
 		<p style="color: #212427; width: 100%">    Transforms were honestly pretty easy. All we had to do was change the translation/rotation/scale functions to return a matrix that when multiplied by our current vector in homogeneous coordinates would result in a transformed vector. By modifying the cubeman svg, we were able to make him elastic by stretching his limbs out. I honestly think he's very good at yoga :)</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/robot_stretch.png" alt="stretchy robot" class="center">
-		<p style="color: #212427; width: 100%">    <i>Todo: extra credit</i></p>
+		<p style="color: #212427; width: 100%">    For the extra credit, we implemented the ability to translate the image outside of scrolling. By using the left and right brackets to move left and right and semicolon for up and apostrophe for down, you can now move the image a set amount.</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_1.png" alt="transform ec 1">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_2.png" alt="transform ec 2">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_3.png" alt="transform ec 3">
+			</div>
+		</div>
 		<br>
 		<h3><b>Barycentric Coordinates</b></h3>
 		<p style="color: #212427; width: 100%">    Barycentric coordinates are a neat way to represent the location of a point relative to the vertices of a triangle. Using this method, we were able to represent our point by fractions, each fraction describing how close our point was to a vertex compared to the opposing edge. This allowed us to use three different colors on each of the vertices, and divide them up so we could get a cool gradient. The hardest part about this assignment was the amount of arithmetic involved. Finding the values wasn't too bad, but brainstorming to making the algorithm efficient took up a lot of energy. Nobody really wants to do a thousand multiplies and adds for 20 pixels. Below is a visual description of barycentric coordinates I stole from <a href="https://mathematica.stackexchange.com/q/246858" style="display: inline">Mathematics Stack Exchange</a>:</p>
