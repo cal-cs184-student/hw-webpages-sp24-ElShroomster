@@ -102,7 +102,6 @@
 		<h3><b>Level Sampling with Mipmaps for Textures</b></h3>
 		<p style="color: #212427; width: 100%">Level sampling involves extracting pixel colors from images of various resolutions. Multiple quality levels of a base texture, such as 1024x1024, 512x512, 128x128, etc., are pre-stored. This allows for more efficient computation of average colors when sampling images at a distance by selecting a lower image quality. In Assignment 1, we implemented this using the level formula from the lecture slides. The formula considers du/dx, dv/dx, dv/dy, and du/dy to calculate the mipmap level. The obtained level is then passed into the sample() function to select the appropriate value based on the specified settings. This approach helps optimize performance by dynamically choosing the most suitable mipmap level for rendering based on the screen space size of the textured object.</p>
 		<br>
-		<h3><b>Extra Credit</b></h3>
 		<br>
 	</body>
 </html>
