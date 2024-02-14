@@ -8,7 +8,8 @@ text-align: center;
 
 body {
   margin: auto;
-  width: 50%; 
+  #width: 50%; 
+  max-width: 960px;
   padding: 10px;
   font-family: 'Lexend Deca', sans-serif; 
   color: #2E475D;    
