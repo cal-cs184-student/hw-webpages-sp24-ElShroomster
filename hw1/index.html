@@ -104,18 +104,18 @@
 		<p style="color: #212427; width: 100%"> As far as we can tell, the best combination, is a lower supersampling rate, (something like four) and more mipmaping and bilinear sampling. The worst one for memory is definitely mip maping, since we have to store multiple versions of the same image, but the worst calculation wise is definitely supersampling. Just by increasing our supersampling slightly, our computation time increases wildly since we are doing way more sampling per pixel. Bilinear is only slightly more computation, but can sometimes be blurrier and less desirable than simpling sampling the nearst pixel. So, what we have learned is that there is a delicate balance of which settings to choose for different scenarios.</p>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/nearest_1x1.png" alt="nearest_1x1">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/l0pn.png" alt="nearest_1x1">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/bilinear_1x1.png" alt="bilinear_1x1">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/l0pl.png" alt="bilinear_1x1">
 			</div>
 		</div>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/nearest_4x4.png" alt="nearest_4x4">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpn.png" alt="nearest_4x4">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/bilinear_4x4.png" alt="bilinear_4x4">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpl.png" alt="bilinear_4x4">
 			</div>
 		</div>
 		<br>
