@@ -20,103 +20,27 @@
 		<h3><b>Part 1: Bezier Curves with 1D de Casteljau Subdivision</b></h3>
 		<p style="color: #DBDEE1; width: 100%">blah blah blah blah blah.</p>
 		<br>
+		
 		<h3><b>Part 2: Bezier Surfaces with Separable 1D de Casteljau</b></h3>
 		<p style="color: #DBDEE1; width: 100%">    In order to reduce aliasing such as jaggies and floating pixels, we use supersampling. We set a sample rate and sample multiple evenly spaced points inside each pixel, then average them to get the total color of that pixel. This means that if a triangle has some area inside a pixel but doesn’t go through the center, we can still ensure that the figure gets equal representation. For example, if the triangle goes through the top right corner, that would be approximately 1/9 of the pixel’s area, so we would give that pixel 1/9th of the triangle’s color. Initially, we thought it would be more space efficient to keep our screen space array the same dimensions, and simply average down each pixel as we rasterize each triangle. This sounded like a great idea, but when multiple triangles were slightly in a single pixel, this prevented the final pixel color from incorporating all of the triangles involved. Instead, we got weird bright lines cutting through our images. In the end, we decided to multiply the dimensions of our screen space matrix by the sample rate, then rasterize each triangle in our svg by pretending the screen was simply much larger. To draw the matrix onto the screen, we then averaged down for each pixel. Below is an example of supersampling, using 1, 4, and 16 points inside each pixel, reducing aliasing in the same image represented above: </p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red1x1.png" alt="svg4 Aliased">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red2x2.png" alt="svg4 Slightly Aliased">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/red4x4.png" alt="svg4 Less Aliased">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/purple1x1.png" alt="svg4 Aliased">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/purple2x2.png" alt="svg4 Slightly Aliased">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/purple4x4.png" alt="svg4 Less Aliased">
-			</div>
-		</div>
 		<br>
-		<p style="color: #DBDEE1; width: 100%">    For extra credit, we decided to implement randomized supersampling. When implementing this method, we noticed that borders became more fuzzy, making a cool effect if you want to rasterize a teddy bear but otherwise not too great of a method. Unfortunately, increasing sample frequency did make the teddy bear-ness go away, but it did make the image look more cleaner. We also made redraw be forced every couple milliseconds for a test, and what came out was a very interesting animation that we didn't record :(. Corner cases where our method is better than grid sampling is at the corner of very long triangles. Our method makes us have higher probability of not having pixel islands as shown below:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/grid_supersampling.png" alt="grid supersampling">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/random_supersampling.png" alt="random supersampling">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">    Left - Grid, Right - Random, Both using 4x4 Supersampling</p>
-		<br>
-		<h3><b>Transforms</b></h3>
+		
+		<h3><b>Part 3: Area-Weighted Vertex Normals</b></h3>
 		<p style="color: #DBDEE1; width: 100%">    Transforms were honestly pretty easy. All we had to do was change the translation/rotation/scale functions to return a matrix that when multiplied by our current vector in homogeneous coordinates would result in a transformed vector. By modifying the cubeman svg, we were able to make him elastic by stretching his limbs out. I honestly think he's very good at yoga :)</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/robot_stretch.png" alt="stretchy robot" class="center">
-		<p style="color: #DBDEE1; width: 100%">    For the extra credit, we implemented the ability to translate the image outside of scrolling. By using the left and right brackets to move left and right and semicolon for up and apostrophe for down, you can now move the image a set amount.</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_1.png" alt="transform ec 1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_2.png" alt="transform ec 2">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/transform_ec_3.png" alt="transform ec 3">
-			</div>
-		</div>
+
 		<br>
-		<h3><b>Barycentric Coordinates</b></h3>
+		<h3><b>Part 4: Edge Flip</b></h3>
 		<p style="color: #DBDEE1; width: 100%">    Barycentric coordinates are a neat way to represent the location of a point relative to the vertices of a triangle. Using this method, we were able to represent our point by fractions, each fraction describing how close our point was to a vertex compared to the opposing edge. This allowed us to use three different colors on each of the vertices, and divide them up so we could get a cool gradient. The hardest part about this assignment was the amount of arithmetic involved. Finding the values wasn't too bad, but brainstorming to making the algorithm efficient took up a lot of energy. Nobody really wants to do a thousand multiplies and adds for 20 pixels. Below is a visual description of barycentric coordinates I stole from <a href="https://mathematica.stackexchange.com/q/246858" style="display: inline">Mathematics Stack Exchange</a>:</p>
-		<img src="https://i.stack.imgur.com/SeHln.png" alt="Cool Diagram" class="center">
-		<p style="color: #DBDEE1; width: 100%"> Below is a picture of a color gradient wheel which was rasterized using barycentric coordinates:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/svg7_barycentric.png" class="center">
 		<br>
-		<h3><b>Pixel Sampling for Textures</b></h3>
+		
+		<h3><b>Part 5: Edge Split</b></b></h3>
 		<p style="color: #DBDEE1; width: 100%">    If you want to save an object's coloring as an image instead of making each detail a triangle, texture mapping is the thing for you. In order to implement pixel sampling for textures, we needed to figure out the relative coordinate in our triangle using barycentric coordinates then map these coordinates to coordinates in our texture image. This part wasn't too bad despite the fact that we had to figure out quite a bit of the rasterization workflow. One major bug that we spent too much time on was making sure the vertices were in counter clockwise winding order. Since we copied most of the code from our previous algorithms, we forgot to also account for the texture uv coordinates while testing winding order. Once that was figured out, the hardest part about pixel sampling was edge cases and rounding. Some pixels on the edges of triangles seemed to not work nicely in bilinear sampling since the four nearest pixels were not necessarily the best idea. This resulted in weird lines through triangles, that we solved through edge case tests. The difference between nearest and bilinear sampling is simply that nearest samples the nearest pixel in the texture image and bilinear samples the nearest four pixels then weighted averages them by relative distance. The relative differences are not too noticable when the texture triangle and the screen triangle are similar in dimension, minus a little bit of blur from bilinear. When the dimensions vary a lot, bilinear is clearly superior since this method allows us to reduce aliasing when nearest sampling would otherwise ignore certain pixels simply becase one is closest. Below is an example of linear versus bilinear sampling for texture mapping. As we can see, bilinear is the winner: </p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/nearest_1x1.png" alt="nearest_1x1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/bilinear_1x1.png" alt="bilinear_1x1">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/nearest_4x4.png" alt="nearest_4x4">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/bilinear_4x4.png" alt="bilinear_4x4">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">    Left - Nearest, Right - Bilinear, Top - 1x1 Supersampling, Bottom - 4x4 Supersampling</p>
 		<br>
-		<h3><b>Level Sampling with Mipmaps for Textures</b></h3>
+		
+		<h3><b>Part 6: Loop Subdivision for Mesh Upsampling</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Level sampling involves extracting pixel colors from images of various resolutions. Multiple quality levels of a base texture, such as 1024x1024, 512x512, 128x128, etc., are pre-stored. This allows for more efficient computation of average colors when sampling images at a distance by selecting a lower image quality. In Assignment 1, we implemented this using the level formula from the lecture slides. The formula considers du/dx, dv/dx, dv/dy, and du/dy to calculate the mipmap level. The obtained level is then passed into the sample() function to select the appropriate value based on the specified settings. This approach helps optimize performance by dynamically choosing the most suitable mipmap level for rendering based on the screen space size of the textured object.</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpn.png" alt="nearest_4x4">
 		<p style="color: #DBDEE1; width: 100%"> As far as we can tell, the best combination, is a lower supersampling rate, (something like four) and more mipmaping and bilinear sampling. The worst one for memory is definitely mip maping, since we have to store multiple versions of the same image, but the worst calculation wise is definitely supersampling. Just by increasing our supersampling slightly, our computation time increases wildly since we are doing way more sampling per pixel. Bilinear is only slightly more computation, but can sometimes be blurrier and less desirable than simpling sampling the nearst pixel. So, what we have learned is that there is a delicate balance of which settings to choose for different scenarios.</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/l0pn.png" alt="nearest_1x1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/l0pl.png" alt="bilinear_1x1">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpn.png" alt="nearest_4x4">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpl.png" alt="bilinear_4x4">
-			</div>
-		</div>
 		<br>
 		<br>
 	</body>
