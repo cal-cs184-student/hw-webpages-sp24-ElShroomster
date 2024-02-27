@@ -32,30 +32,30 @@
 		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s_1,s_2,s_3,...s_n]$ and create a new list with $$\text{lerp}(s_1,s_2,t), \text{lerp}(s_2,s_3,t),...\text{lerp}(s_{n-1},s_n,t).$$ When repeated $n-1$ times, this will calculate one point on the bezier curve. So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use $$(1-t) * p_i + t * p_{i+1}.$$ This creates some very cool effects, as can be seen below.</p>
 		<div class="row">
   			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/base.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/base.png" alt="svg4 Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/step1.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step1.png" alt="svg4 Slightly Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/step2.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step2.png" alt="svg4 Less Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/step3.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step3.png" alt="svg4 Less Aliased">
 			</div>
 		</div>
 		<div class="row">
   			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/step4.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step4.png" alt="svg4 Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/step5.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step5.png" alt="svg4 Slightly Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/finalcurve2.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/finalcurve2.png" alt="svg4 Less Aliased">
 			</div>
 			<div class="column">
-				<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/finalcurve2.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/finalcurve2.png" alt="svg4 Less Aliased">
 			</div>
 		</div>
 		<br>
