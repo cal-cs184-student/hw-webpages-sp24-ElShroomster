@@ -29,8 +29,8 @@
 		<br>
 		
 		<h3><b>Part 1: Bezier Curves with 1D de Casteljau Subdivision</b></h3>
-		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s_1,s_2,s_3,...s_n]$ and create a new list with $[\text{lerp}(s_1,s_2,t), \text{lerp}(s_2,s_3,t),...\text{lerp}(s_{n-1},s_n,t)]$. When repeated $n-1$ times, this will calculate one point on the bezier curve.</p>
-		<p style="color: #DBDEE1; width: 100%">So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use $(1-t) * p_i + t * p_{i+1}$. This creates some very cool effects, as can be seen below.</p>
+		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s_1,s_2,s_3,...s_n]$ and create a new list with $$\text{lerp}(s_1,s_2,t), \text{lerp}(s_2,s_3,t),...\text{lerp}(s_{n-1},s_n,t)$$. When repeated $n-1$ times, this will calculate one point on the bezier curve.</p>
+		<p style="color: #DBDEE1; width: 100%">So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use $$(1-t) * p_i + t * p_{i+1}$$. This creates some very cool effects, as can be seen below.</p>
 		<br>
 		
 		<h3><b>Part 2: Bezier Surfaces with Separable 1D de Casteljau</b></h3>
