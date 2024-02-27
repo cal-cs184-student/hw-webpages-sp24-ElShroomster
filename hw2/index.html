@@ -3,6 +3,9 @@
   		<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/malevolent-2.png?raw=true" alt="Malevolent Meshes">
 	</div>
 	<head>
+		<script type="text/javascript" id="MathJax-script" async
+  			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
  		<link rel="stylesheet" href="styling.css">
 		<Title>Homework 2 - Geometric Modeling </Title>
 	</head>
@@ -19,7 +22,7 @@
 		<br>
 		
 		<h3><b>Part 1: Bezier Curves with 1D de Casteljau Subdivision</b></h3>
-		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: [s1,s2,s3,...sn] and create a new list with [lerp(s1,s2,t), lerp(s2,s3,t),...lerp(sn-1,sn,t)]. When repeated n-1 times, this will calculate one point on the bezier curve.</p>
+		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s1,s2,s3,...sn]$ and create a new list with [lerp(s1,s2,t), lerp(s2,s3,t),...lerp(sn-1,sn,t)]. When repeated n-1 times, this will calculate one point on the bezier curve.</p>
 		<p style="color: #DBDEE1; width: 100%">So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use (1-t) * p[i] + t * p[i+1]. This creates some very cool effects, as can be seen below.</p>
 		<br>
 		
