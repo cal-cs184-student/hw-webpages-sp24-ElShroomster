@@ -71,17 +71,9 @@
 		<h3><b>Part 3: Area-Weighted Vertex Normals</b></h3>
 		<p style="color: #DBDEE1; width: 100%"> To implement area weighted vertex normals, we first looped through every face that is adjacent to our vertex. After validating that our face isn't a boundary, we  then calculate the area of the triangle by using the norm of the cross product of vertex positions divided by two. This calculation helped us a lot, since otherwise having to use trignometric functions would have slowed down our code. Finally, we stored the weighted normal of each face in a Vector3D which we then squished into a unit vector at the end. This completes our algorithm. Below are screenshots of our code at work. Above is flat shading, and below is our newly implemented Phong shading: </p>
 
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/flat_teapot.png" alt="flat_teapot">
-			</div>
-			<div class="column">
-				<img src="" alt="">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/phong_teapot.png" alt="phong_teapot">
-			</div>
-		</div>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/flat_teapot.png" alt="flat_teapot">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/phong_teapot.png" alt="phong_teapot">
+		
 		<p style="color: #DBDEE1; width: 100%"> This part of the assignment was not very hard and we had no issues implementing code or debugging, giving us false hope for the next three parts. </p>
 
 		<br>
