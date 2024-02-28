@@ -79,18 +79,12 @@
 
 		<br>
 		<h3><b>Part 4: Edge Flip</b></h3>
-		<p style="color: #DBDEE1; width: 100%"> To implement edge flips, we simply had to reassign the pointers of each edge's vertices to the pointers of edge vertices one halfedge away, right? Wrong. There are WAY too many pointers here to even think about doint that. First, we ignore all boundary edges by using the isBoundary() function. For each vertex, we first update the halfedge pointer to the new one after flipping. Then, we modify the neighbors of each halfedge using setNeighbors and set the new face, edge, vertex, next, and twin pointers for each half edge. Finally, we set the face and edge pointers so that every single pointer is reassigned properly. Thankfully, we drew out the algorithm by hand before we implemented it, so we had no issues with pointer reassignment in this step. Unfortunately, we had issues with our naming convention, since our drawing and our variable names did not match, so we had to have a mental map of drawn edge/halfedge/vertex to variable name, which made the coding process very long and tedious. Looking back, we are so glad that this part of the assignment didn't give us any issues in terms of debugging. Below are screenshots of quadball before and after a couple flips: </p>
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_normal.png" alt="quadball_normal">
-			</div>
-			<div class="column">
-				<img src="" alt="">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_flipped.png" alt="quadball_flipped">
-			</div>
-		</div>
+		<p style="color: #DBDEE1; width: 100%">To implement edge flips, we simply had to reassign the pointers of each edge's vertices to the pointers of edge vertices one half edge away, right? Wrong. There are FAR too many pointers here to even think about doing that. First, we ignore all boundary edges by using the isBoundary() function. For each vertex, we first update the halfedge pointer to the new one after flipping. Then, we modify the neighbors of each halfedge using setNeighbors and set the new face, edge, vertex, next, and twin pointers for each half edge. Finally, we set the face and edge pointers so that every single pointer is reassigned properly. </p>
+		<p style="color: #DBDEE1; width: 100%">Thankfully, we drew out the algorithm by hand before we implemented it, so we had no issues with pointer reassignment in this step. Unfortunately, we had issues with our naming convention, since our drawing and our variable names did not match, so we had to have a mental map of drawn edge/halfedge/vertex to variable name, which made the coding process very long and tedious. Looking back, we are so glad that this part of the assignment didn't give us any issues in terms of debugging. Below are screenshots of quadball before and after a couple flips:</p>
+
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_normal.png" alt="quadball_normal">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_flipped.png" alt="quadball_flipped">
+
 		<br>
 		<br>
 		
