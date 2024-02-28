@@ -1,6 +1,6 @@
 <html>
 	<div class="container">
-  		<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/malevolent-2.png?raw=true" alt="Malevolent Meshes">
+  		<img src="https://github.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/blob/master/hw2/images/malevolent-2.png?raw=true" alt="Malevolent Meshes">
 	</div>
 	<head>
 		<script type="text/javascript" id="MathJax-script" async
@@ -24,38 +24,39 @@
 		<a style="color: #DBDEE1", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/"> Main Page </a>
 
 		<h3><b>Overview</b></h3>
-		<p style="color: #DBDEE1; width: 100%">This assignment was very interesting to complete. The initial segments primarily focused on the intricate world of bezier curves, albeit in varying dimensions. While our classroom discussions had introduced us to the concept of managing bezier curves in 3D, it wasn't until we dove into the actual code that everything truly clicked.</p>
-		<p style="color: #DBDEE1; width: 100%"> It was particularly cool to see how the code generates many bezier curves all parallel to each other, draws a bezier curve between them, and then selects a point. (Now, it isn't quite true that we generate full bezier curves, since we only calculate singular points, but it was still very interesting regardless.)</p>
+		<p style="color: #DBDEE1; width: 100%">Homework 2 was all about geometric modeling. In Part I, we first started with drawing curves using control points using de Casteljau subdivision. Using this abstraction, we increased our dimensionality to surfaces in order to render full .bez files. </p>
+		<p style="color: #DBDEE1; width: 100%"> Part II was all about meshes and mesh algorithms. First, we started off by implementing area-weighted vertex normals for Phong shading, making our teapots and other mesh structures look less square. We then implemented edge flipping and splitting which allowed us to modify our mesh in real time. Finally, we implemented upsampling of our mesh through loop suubdivision by using our edge splitting and flipping abstractions.</p>
+		<p style="color: #DBDEE1; width: 100%"> Overall, the project was more fun than challenging. Unfortunately, pointers were our main issue throughout Part II, since a single bad reassignment could percolate and debugging would require us to remember each step precisely. Thankfully, we simplified this process by writing out the algorithm by hand before, giving us a reference in case anything went wrong.</p>
 		<br>
 		
 		<h3><b>Part 1: Bezier Curves with 1D de Casteljau Subdivision</b></h3>
 		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s_1,s_2,s_3,...s_n]$ and create a new list with $$\text{lerp}(s_1,s_2,t), \text{lerp}(s_2,s_3,t),...\text{lerp}(s_{n-1},s_n,t).$$ When repeated $n-1$ times, this will calculate one point on the bezier curve. So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use $$(1-t) * p_i + t * p_{i+1}.$$ This creates some very cool effects, as can be seen below.</p>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/base.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/base.png" alt="svg4 Aliased">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step1.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step1.png" alt="svg4 Slightly Aliased">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step2.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step2.png" alt="svg4 Less Aliased">
 			</div>
 		</div>
 		<div class="row">
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step3.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step3.png" alt="svg4 Less Aliased">
 			</div>
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step4.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step4.png" alt="svg4 Aliased">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/step5.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step5.png" alt="svg4 Slightly Aliased">
 			</div>
 		</div>
 		<p style="color: #DBDEE1; width: 100%">The final Bezier curve can be seen below:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/finalcurve2.png" alt="svg4 Less Aliased">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/finalcurve2.png" alt="svg4 Less Aliased">
 		<p style="color: #DBDEE1; width: 100%">Here are a few more edits to a second curve:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/curve2full.png" alt="svg4 Less Aliased">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/curve2full.png" alt="svg4 Less Aliased">
 		<br>
 		<br>
 		
@@ -65,21 +66,32 @@
 		<br>
 		
 		<h3><b>Part 3: Area-Weighted Vertex Normals</b></h3>
-		<p style="color: #DBDEE1; width: 100%">    Transforms were honestly pretty easy. All we had to do was change the translation/rotation/scale functions to return a matrix that when multiplied by our current vector in homogeneous coordinates would result in a transformed vector. By modifying the cubeman svg, we were able to make him elastic by stretching his limbs out. I honestly think he's very good at yoga :)</p>
+		<p style="color: #DBDEE1; width: 100%"> To implement area weighted vertex normals, we first looped through every face that is adjacent to our vertex. After validating that our face isn't a boundary, we  then calculate the area of the triangle by using the norm of the cross product of vertex positions divided by two. This calculation helped us a lot, since otherwise having to use trignometric functions would have slowed down our code. Finally, we stored the weighted normal of each face in a Vector3D which we then squished into a unit vector at the end. This completes our algorithm. Below are screenshots of our code at work. Above is flat shading, and below is our newly implemented Phong shading: </p>
+
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/flat_teapot.png" alt="flat_teapot">
+			</div>
+			<div class="column">
+				<img src="" alt="">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/phong_teapot.png" alt="phong_teapot">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%"> This part of the assignment was not very hard and we had no issues implementing code or debugging, giving us false hope for the next three parts. </p>
 
 		<br>
 		<h3><b>Part 4: Edge Flip</b></h3>
-		<p style="color: #DBDEE1; width: 100%">    Barycentric coordinates are a neat way to represent the location of a point relative to the vertices of a triangle. Using this method, we were able to represent our point by fractions, each fraction describing how close our point was to a vertex compared to the opposing edge. This allowed us to use three different colors on each of the vertices, and divide them up so we could get a cool gradient. The hardest part about this assignment was the amount of arithmetic involved. Finding the values wasn't too bad, but brainstorming to making the algorithm efficient took up a lot of energy. Nobody really wants to do a thousand multiplies and adds for 20 pixels. Below is a visual description of barycentric coordinates I stole from <a href="https://mathematica.stackexchange.com/q/246858" style="display: inline">Mathematics Stack Exchange</a>:</p>
+		<p style="color: #DBDEE1; width: 100%"> </p>
 		<br>
 		
 		<h3><b>Part 5: Edge Split</b></b></h3>
-		<p style="color: #DBDEE1; width: 100%">    If you want to save an object's coloring as an image instead of making each detail a triangle, texture mapping is the thing for you. In order to implement pixel sampling for textures, we needed to figure out the relative coordinate in our triangle using barycentric coordinates then map these coordinates to coordinates in our texture image. This part wasn't too bad despite the fact that we had to figure out quite a bit of the rasterization workflow. One major bug that we spent too much time on was making sure the vertices were in counter clockwise winding order. Since we copied most of the code from our previous algorithms, we forgot to also account for the texture uv coordinates while testing winding order. Once that was figured out, the hardest part about pixel sampling was edge cases and rounding. Some pixels on the edges of triangles seemed to not work nicely in bilinear sampling since the four nearest pixels were not necessarily the best idea. This resulted in weird lines through triangles, that we solved through edge case tests. The difference between nearest and bilinear sampling is simply that nearest samples the nearest pixel in the texture image and bilinear samples the nearest four pixels then weighted averages them by relative distance. The relative differences are not too noticable when the texture triangle and the screen triangle are similar in dimension, minus a little bit of blur from bilinear. When the dimensions vary a lot, bilinear is clearly superior since this method allows us to reduce aliasing when nearest sampling would otherwise ignore certain pixels simply becase one is closest. Below is an example of linear versus bilinear sampling for texture mapping. As we can see, bilinear is the winner: </p>
+		<p style="color: #DBDEE1; width: 100%"> </p>
 		<br>
 		
 		<h3><b>Part 6: Loop Subdivision for Mesh Upsampling</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Level sampling involves extracting pixel colors from images of various resolutions. Multiple quality levels of a base texture, such as 1024x1024, 512x512, 128x128, etc., are pre-stored. This allows for more efficient computation of average colors when sampling images at a distance by selecting a lower image quality. In Assignment 1, we implemented this using the level formula from the lecture slides. The formula considers du/dx, dv/dx, dv/dy, and du/dy to calculate the mipmap level. The obtained level is then passed into the sample() function to select the appropriate value based on the specified settings. This approach helps optimize performance by dynamically choosing the most suitable mipmap level for rendering based on the screen space size of the textured object.</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw1/images/lnpn.png" alt="nearest_4x4">
-		<p style="color: #DBDEE1; width: 100%"> As far as we can tell, the best combination, is a lower supersampling rate, (something like four) and more mipmaping and bilinear sampling. The worst one for memory is definitely mip maping, since we have to store multiple versions of the same image, but the worst calculation wise is definitely supersampling. Just by increasing our supersampling slightly, our computation time increases wildly since we are doing way more sampling per pixel. Bilinear is only slightly more computation, but can sometimes be blurrier and less desirable than simpling sampling the nearst pixel. So, what we have learned is that there is a delicate balance of which settings to choose for different scenarios.</p>
+		<p style="color: #DBDEE1; width: 100%"> </p>
 		<br>
 		<br>
 	</body>
