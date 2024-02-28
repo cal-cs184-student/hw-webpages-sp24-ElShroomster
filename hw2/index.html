@@ -107,13 +107,27 @@
 		<p style="color: #DBDEE1; width: 100%"> Finally, we can make our meshes look cooler. Edge splits and flips allow us to upsample our mesh so that spheres look more round (and cubes do too for some reason...). To upsample, we follow the guide in student_code.cpp as well as in the instructions. First, we compute new positions for all the vertices in our mesh using the loop subdivision rule. Here, we have to be careful of the degree of the vertex, since there are different algorithms for a vertex of degree 3 and otherwise. We then compute the new edge positions similarly. Here, we do not have to worry about anything, since an edge cannot have at most two vertices. Thirdly, we split each edge in our mesh, and carefuly mark all the new vertices and edges so that we don't infinite loop. We must also make sure that our central vertex after each split is set to the old edge's new position calculated in step 2. After that, we must flip all edges connecting one new and one old vertex. We have to do this because otherwise our splitting algorithm will cause us to have "dents" in our resulting mesh. Finally, we set the new vertex positions to the old ones that were calculated in step 1. Meshes like the teapot and cow seem to gain higher quality when subdividing, but other meshes like the cube seem to deform into a clay sphere that was accidentally dropped. The reason is that sharp corners and edges become smoother as the number of faces in the mesh increase. Below are screenshots of a torus having this issue. We also show a remedy to this issue which is pre-splitting edges around sharp corners:</p>
 		<div class="row">
 			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_normal.png" alt="cow_normal">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_0.png" alt="torus_bad_0">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_split.png" alt="cow_split">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_1.png" alt="torus_bad_1">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_split_and_flipped.png" alt="cow_split_and_flipped">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_2.png" alt="torus_bad_2">
+			</div>
+		</div>
+
+		<p style="color: #DBDEE1; width: 100%"> We fix this problem by pre-splitting edges near sharp corners. As we can see, the final torus maintains some of its sharp edges, such as in the center with a polygonal hole instead of a circular one.</p>
+		<div class="row">
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_0.png" alt="torus_good_0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_1.png" alt="torus_good_1">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_2.png" alt="torus_good_2">
 			</div>
 		</div>
 
@@ -129,6 +143,8 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_deformed.png" alt="cube_deformed">
 			</div>
 		</div>
+		<p style="color: #DBDEE1; width: 100%"> After preprocessing: </p>
+		<div class="row">
 		<div class="row">
 			<div class="column">
 			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_normal.png" alt="cube_preprocessed_0">
