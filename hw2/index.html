@@ -33,30 +33,30 @@
 		<p style="color: #DBDEE1; width: 100%">De Casteljau's algorithm is decently straightforward. The idea in this function is to take a list of values: $[s_1,s_2,s_3,...s_n]$ and create a new list with $$\text{lerp}(s_1,s_2,t), \text{lerp}(s_2,s_3,t),...\text{lerp}(s_{n-1},s_n,t).$$ When repeated $n-1$ times, this will calculate one point on the bezier curve. So, to do this in C++ we simply need to create an empty vector, <b>returnvec</b>, loop through every index in the input vector, and then add each lerp to <b>returnvec</b>. To accomplish the lerp we simply use $$(1-t) * p_i + t * p_{i+1}.$$ This creates some very cool effects, as can be seen below.</p>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/base.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/base.png" alt="0">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step1.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step1.png" alt="1">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step2.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step2.png" alt="2">
 			</div>
 		</div>
 		<div class="row">
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step3.png" alt="svg4 Less Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step3.png" alt="3">
 			</div>
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step4.png" alt="svg4 Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step4.png" alt="4">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step5.png" alt="svg4 Slightly Aliased">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step5.png" alt="5">
 			</div>
 		</div>
 		<p style="color: #DBDEE1; width: 100%">The final Bezier curve can be seen below:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/finalcurve2.png" alt="svg4 Less Aliased">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/finalcurve2.png" alt="finalcurve2">
 		<p style="color: #DBDEE1; width: 100%">Here are a few more edits to a second curve:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/curve2full.png" alt="svg4 Less Aliased">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/curve2full.png" alt="curve2full">
 		<br>
 		<br>
 		
@@ -86,19 +86,31 @@
 		<p style="color: #DBDEE1; width: 100%"> To implement edge flips, we simply had to reassign the pointers of each edge's vertices to the pointers of edge vertices one halfedge away, right? Wrong. There are WAY too many pointers here to even think about doint that. First, we ignore all boundary edges by using the isBoundary() function. For each vertex, we first update the halfedge pointer to the new one after flipping. Then, we modify the neighbors of each halfedge using setNeighbors and set the new face, edge, vertex, next, and twin pointers for each half edge. Finally, we set the face and edge pointers so that every single pointer is reassigned properly. Thankfully, we drew out the algorithm by hand before we implemented it, so we had no issues with pointer reassignment in this step. Unfortunately, we had issues with our naming convention, since our drawing and our variable names did not match, so we had to have a mental map of drawn edge/halfedge/vertex to variable name, which made the coding process very long and tedious. Looking back, we are so glad that this part of the assignment didn't give us any issues in terms of debugging. Below are screenshots of quadball before and after a couple flips: </p>
 		<div class="row">
 			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_normal.png" alt="flat_teapot">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_normal.png" alt="quadball_normal">
 			</div>
 			<div class="column">
 				<img src="" alt="">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_flipped.png" alt="phong_teapot">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/quadball_flipped.png" alt="quadball_flipped">
 			</div>
 		</div>
 		<br>
 		
 		<h3><b>Part 5: Edge Split</b></b></h3>
-		<p style="color: #DBDEE1; width: 100%"> </p>
+		<p style="color: #DBDEE1; width: 100%"> Implementing edge splits was not too hard after we looked through the precise ordering of the algorithm. First, we ignored all boundary edges. We then created 6 new halfedges, 2 new faces, 1 new vertex, and 3 new edges to represent this edge split. Then, according to a diagram we drew (and labeled as improvement from task 4), we copied over some code from the previous task and assigned the pointers correctly. In terms of debugging, we had one issue that we could not figure out for a really long time with assigning isNew to the new edges/vertex. We were assigning isNew at the top of the function, but thankfully and Ed poster mentioned that you cannot do this until the end, which saved us from going insane trying to debug this issue. Also, we had some issues with assigning pointers correctly, since we used code from task 4 without realizing that pointer assignment for edge flips and edge splits are greatly different.</p>
+		<p style="color: #DBDEE1; width: 100%"> Below are images of cow.dae before and after some edge splits and edge splits and flips: </p>
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_normal.png" alt="cow_normal">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_split.png" alt="cow_split">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cow_split_flipped.png" alt="cow_split_flipped">
+			</div>
+		</div>
 		<br>
 		
 		<h3><b>Part 6: Loop Subdivision for Mesh Upsampling</b></h3>
