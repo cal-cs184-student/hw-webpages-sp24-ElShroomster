@@ -33,32 +33,20 @@
 		<p style="color: #DBDEE1; width: 100%">For our triangle intersection, we just used a simple algorithm from the lecture slides. We first calculate $E_1$, $E_2$, $S$, $S_1$, and $S_2$  from the given ray, and then use the equation  $$\frac{1}{S_1 \bullet E_1} \cdot \left(S_2\bullet E_2, S_1\bullet S, S_2\bullet r_d\right)$$ to calculate the intersection. Then, after applying a few checks (namely, checking if the x,y, and z components are in bounds,) we are able to return true. (For intersect(), not has_intersection(), we also add the relevant values to the given intersection.)</p>
 		<p style="color: #DBDEE1; width: 100%">For sphere intersection, we used the idea that a ray is determined by $r(t)=o+t\cdot d$. So, from the slides, the intersection of the ray can be found by solving at^2+bt+c-0 where $a$ is the dot product of the ray direction with itself, $b$ is twice the dot product of the ray direction with the vector from the ray origin to the sphere, and $c$ is the squared distance between the ray origin and the sphere center minus the squared radius of the sphere.</p>
 		<p style="color: #DBDEE1; width: 100%">Then, we are able to determine if the ray had an intersection with the sphere based on the value of the determinant. Our code implements this quite literally. Additionally, on intersect(), not has_intersection(), we add the intersection time $t$ to the Intersection struct passed into the function.</p>
+		<p style="color: #DBDEE1; width: 100%">Now we can render some pretty images as can be seen below:</p>
 		<div class="row">
   			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/base.png" alt="0">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/empty.png" alt="0">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step1.png" alt="1">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/cow.png" alt="1">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step2.png" alt="2">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
 			</div>
 		</div>
-		<div class="row">
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step3.png" alt="3">
-			</div>
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step4.png" alt="4">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/step5.png" alt="5">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">The final Bezier curve can be seen below:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/finalcurve2.png" alt="finalcurve2">
-		<p style="color: #DBDEE1; width: 100%">Here are a few more edits to a second curve:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/curve2full.png" alt="curve2full">
+		<p style="color: #DBDEE1; width: 100%">And one more:</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/lucy.png" alt="3">
 		<br>
 		<br>
 		
