@@ -264,6 +264,15 @@
 		<br>
 		<p style="color: #DBDEE1; width: 100%">- For the second part of our extra credit, we made it so that our algorithm did not create a new vector each time for the BVH nodes. Instead, we used the sort function for std::vectors. Instead, we sorted the vectors we had using comparator functions and our heuristic, and indexed the BVH by setting the middle iterator to start + (start - end) / 2 while recursing. This improved our memory for high vertex meshes such as peter and CBlucy by a factor of square rooting it. This crazy improvement allowed us to render multiple images at once on our pcs. Our record was 10 renders at once before hitting a blue screen whereas our previous one was 2 for sky/blob.dae.</p>
 		<br>
+
+		<p style="color: #DBDEE1; width: 100%">- In order to better our arithmetic, in our calculations that required division or square rooting, we instead multiplied both sides of the operation where possible in order to reduce the number of arithmetic calls we had to do. One big example of this is the calculation of our max tolerance, algorithm highlighted below. </p>
+		<p style="color: #DBDEE1; width: 100%">I = 3.8416 * variance / i;
+		if (I <= maxTolerance * maxTolerance * mean * mean) {
+			break;
+		} </p> 
+		<p style="color: #DBDEE1; width: 100%">Based on our analysis of our work, our biggest barrier is lighting calculations using direct and indirect lighting. Unfortunately, there is nothing we can really do about lighting with simple analysis, but we noticed that we can calculate the one bounce radiance, then use the values calculated here to also calculate further bounces. Unfortunately this might not be the best idea since there are quite a few issues with exact calculations, but using this heuristic can greatly help us. We feel like this might be a potential final project idea to expand upon that.</p>
+		<br>
+
 		<br>
 
 		<h3><b>Afterthoughts</b></h3>
