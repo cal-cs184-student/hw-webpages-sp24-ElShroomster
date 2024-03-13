@@ -24,7 +24,11 @@
 		<a style="color: #DBDEE1", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/"> Main Page </a>
 
 		<h3><b>Overview</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Hot steamy carrots </p>
+		<p style="color: #DBDEE1; width: 100%">Homework 3 was a delightful trip into the world of pathtracers and global illumination. In Part I, we started out by generating rays and writing the necessary intersections to render our first image that used the surface normals. Part II was perhaps the most interesting section of the project, since with an edit to how we organized the BVH tree (That is, using surface area instead of the median), we were able to radically speed up our code, which was cause for great excitement.</p>
+		<p style="color: #DBDEE1; width: 100%">Now, armed with our ability to quickly render scenes, we took on Part III. Most of the tasks could be implemented using formulas from the lecture slides, but this part turned out to be a little more than we bargained for, as it took us much longer than expected. We had trouble finding a bug within the section, which ended up making sense, since it wasn’t in that task the whole time. A bug in the collisions in Part II had caused us all the issues in Part III. Lesson learned: Always check old code. Other than that, this section was quite interesting once we got it working, because we finally got to see the shadows on the bunny and the floor.</p>
+		<p style="color: #DBDEE1; width: 100%">Part IV produced some stunning images that surpassed our expectations. With only writing one other recursive function, we were able to expand the number of light bounces, creating the delightful, soft look of global illumination. We were also able to see exactly how increasing the number of light bounces affected the image.</p>
+		<p style="color: #DBDEE1; width: 100%">Part V was also pretty neat, since it enabled us to see how adaptive sampling actually rendered the image. We simply had to write a new function to count how many samples the est_radiance_global_illumination() function returned. It was nice to see a visual representation of what we already assumed to be true: The areas in more shadow take longer to converge, and the ones in light converge quicker. </p>
+		<p style="color: #DBDEE1; width: 100%">The project overall was incredibly interesting, and we had fun implementing a few parts of the extra credit. We look forward to homework 4!</p>
 		<br>
 		
 		<h3><b>Part 1: Ray Generation and Scene Intersection </b></h3>
