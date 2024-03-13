@@ -14,68 +14,31 @@
   			};
 		</script>
  		<link rel="stylesheet" href="styling.css">
-		<Title>Homework 3 - Pathtracer</Title>
+		<Title>Homework 4 - Cloth Sim</Title>
 	</head>
 	<body>
-		<h2>Homework 3 - <b>Pathtracer</b></h2>
+		<h2>Homework 4 - <b>Cloth Sim</b></h2>
 		<center>
 		<h5 style="color: #DBDEE1">by Sriram Srivatsan &#40;sriram.srivatsan &#40;at&#41; berkeley.edu&#41; and Jaron Erba &#40;jaronerba &#40;at&#41; berkeley.edu&#41;</h5>
 		</center>
 		<a style="color: #DBDEE1", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/"> Main Page </a>
 
 		<h3><b>Overview</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Homework 3 was a delightful trip into the world of pathtracers and global illumination. In Part I, we started out by generating rays and writing the necessary intersections to render our first image that used the surface normals. Part II was perhaps the most interesting section of the project, since with an edit to how we organized the BVH tree (That is, using surface area instead of the median), we were able to radically speed up our code, which was cause for great excitement.</p>
-		<p style="color: #DBDEE1; width: 100%">Now, armed with our ability to quickly render scenes, we took on Part III. Most of the tasks could be implemented using formulas from the lecture slides, but this part turned out to be a little more than we bargained for, as it took us much longer than expected. We had trouble finding a bug within the section, which ended up making sense, since it wasn’t in that task the whole time. A bug in the collisions in Part II had caused us all the issues in Part III. Lesson learned: Always check old code. Other than that, this section was quite interesting once we got it working, because we finally got to see the shadows on the bunny and the floor.</p>
-		<p style="color: #DBDEE1; width: 100%">Part IV produced some stunning images that surpassed our expectations. With only writing one other recursive function, we were able to expand the number of light bounces, creating the delightful, soft look of global illumination. We were also able to see exactly how increasing the number of light bounces affected the image.</p>
-		<p style="color: #DBDEE1; width: 100%">Part V was also pretty neat, since it enabled us to see how adaptive sampling actually rendered the image. We simply had to write a new function to count how many samples the est_radiance_global_illumination() function returned. It was nice to see a visual representation of what we already assumed to be true: The areas in more shadow take longer to converge, and the ones in light converge quicker. </p>
-		<p style="color: #DBDEE1; width: 100%">The project overall was incredibly interesting, and we had fun implementing a few parts of the extra credit. We look forward to homework 4!</p>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<br>
 		
-		<h3><b>Part 1: Ray Generation and Scene Intersection </b></h3>
-		<p style="color: #DBDEE1; width: 100%">In concept, the ray generation scheme works by generating a ray (or pretty much a vector) from the camera position in world space to a specific point in camera space determined by $(x,y)$. We implement this in generate_ray() by creating a new ray with ray.min_t = nClip, ray.max_t = fClip, and ray.o = camera pos. We are then able to calculate the camera size, and thus calculate the camera relative positions of $x$ and $y$. We can then convert this point to world space, set it to the $d$ value of the ray, and return the ray.</p>
-		<p style="color: #DBDEE1; width: 100%">For the randomized ray sampling within a pixel inside of raytrace_pixel(), we use  the get_sample() function to find a random position within the pixel, use generate_ray to create the ray, and then call est_radiance_globabl_illumination() on that pixel. We can then update the pixel and add it to the buffer.</p>
-		<p style="color: #DBDEE1; width: 100%">For our triangle intersection, we just used a simple algorithm from the lecture slides. We first calculate $E_1$, $E_2$, $S$, $S_1$, and $S_2$  from the given ray, and then use the equation  $$\frac{1}{S_1 \bullet E_1} \cdot \left(S_2\bullet E_2, S_1\bullet S, S_2\bullet r_d\right)$$ to calculate the intersection. Then, after applying a few checks (namely, checking if the x,y, and z components are in bounds,) we are able to return true. (For intersect(), not has_intersection(), we also add the relevant values to the given intersection.)</p>
-		<p style="color: #DBDEE1; width: 100%">For sphere intersection, we used the idea that a ray is determined by $r(t)=o+t\cdot d$. So, from the slides, the intersection of the ray can be found by solving at^2+bt+c-0 where $a$ is the dot product of the ray direction with itself, $b$ is twice the dot product of the ray direction with the vector from the ray origin to the sphere, and $c$ is the squared distance between the ray origin and the sphere center minus the squared radius of the sphere.</p>
-		<p style="color: #DBDEE1; width: 100%">Then, we are able to determine if the ray had an intersection with the sphere based on the value of the determinant. Our code implements this quite literally. Additionally, on intersect(), not has_intersection(), we add the intersection time $t$ to the Intersection struct passed into the function.</p>
-		<p style="color: #DBDEE1; width: 100%">Now we can render some pretty images as can be seen below:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/lucy.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/cow.png" alt="1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/spheres.png" alt="2">
-			</div>
-		</div>
+		<h3><b>Part 1: Masses And Springs </b></h3>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<br>
 		<br>
 		
 		
-		<h3><b>Part 2: Bounding Volume Hierarchy</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Our BVH construction algorithm was very simple. We would take a start and end iterator for our primitives that should be in a current node. If the primitive count is under our node threshold, we simply store the primitive iterators in our node. Otherwise, we test to see which axis to split our primitives on by finding the axis split that results in an even split of the primitives giving both sides almost even volume. We calculate this by finding the overall centroid and putting primitives on their respective sides. Then, we use the iterators to sort our sub-array and recurse with the left and right nodes being the left and right (x, y, or z) of this centroid. Normal shading for a few large dae files are shown below: </p>
-		<div class="row">
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/maxplanck.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/dragon.png" alt="1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/peter.png" alt="2">
-			</div>
-		</div>
-
-		<p style="color: #DBDEE1; width: 100%">We tested the rendering speeds on the files meshedit/cow.dae and meshedit/beetle.dae. The cow without the BVH took $31.7701$ seconds on average, while the BVH shortened this down to $.2939$ seconds on average. Meanwhile, the beetle took $.4954$ seconds on average with the BVH while without a BVH it took $39.1173$, which is a similar speedup. If a BVH is truly $O(\log(n))$ and without the BVH acceleration is $O(n)$ for all primitives, then we can reconstruct the number of primitives in the image, which using a calculator for gives very close results for both the cow and the beetle. </p>
-		<p style="color: #DBDEE1; width: 100%">Clearly, BVH is superior and no smart person should render an image without it. I wouldn't even wish it upon my worst enemy to render an image without BVH acceleration.</p>
+		<h3><b>Part 2: Simulation Via Numerical Integration</b></h3>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<br>
 		
-		<h3><b>Part 3: Direct Illumination</b></h3>
-		<p style="color: #DBDEE1; width: 100%">To implement the hemisphere variation for direct lighting, we simply calculated num_samples rays and then returned the average of them. To actually calculate these rays though, first we had to convert wi to world space, after which we could create a ray from hit_p to the world version of wi. Now, we had to call the intersect function on this ray. On the case of an intersection, we then added $$\text{emission}_{\text{BSDF}}\cdot f(w_{\text{out}}, wi)\cdot wi_z \cdot p$$ where p is the value we are normalizing to in the hemisphere. Also, at this point, $f$ simply returns $\frac{\text{reflectance}}{\pi}$ because we only have one type of BSDF. Unfortunately, on this part, we had a very strange bug that we were stuck on for hours. Even more unfortunate for us, it turned out to not be in this part at all, but was actually a small bug with the implementation of Part 2. </p>
-		<p style="color: #DBDEE1; width: 100%">Importance sampling was a bit more difficult to implement, as we had to sample from each of the lights instead of in a hemisphere. So, we created a for loop that iterates through each light in scene->lights. Inside of this,  we first check if the light is a delta light (in this assignment it is not), and if it isn’t, we just set our iterations to the variable ns_area_light.</p>
-		<p style="color: #DBDEE1; width: 100%">Inside the inner loop (goes for ns_area_light iterations,) we must call sample_L() with the appropriate parameters, and then create a ray with hit_p and wi (We make sure that its min_t and max_t are exactly EPS_F off the borders.) Finally, if there is no intersection, then we use the formula $$f(w_{\text{out}}, wi)\cdot l \cdot  \frac{\text{wi} \bullet n}{\text{PDF}}$$ where $l$ is the return value of sample_L(), and PDF is the pdf attribute of sample_L() to calculate the value at that point, which we then add to our total light sum. We then return that value divided by the total number of iterations.</p>
-		<p style="color: #DBDEE1; width: 100%">We can now see some results of the two algorithms. (Hemisphere; top, importance; bottom.)</p>
+		<h3><b>Part 3: Handling Collisions with Other Objects</b></h3>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_hem_CBbunny.png" alt="0">
@@ -87,196 +50,25 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_hem_spheres.png" alt="0">
 			</div>
 		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_imp_CBbunny.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_imp_coil.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_imp_spheres.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">The differences between these two are, honestly, quite obvious. We also tested light sampling, and the results were pretty interesting. 1, 4, and 16 samples were pretty similar, although 16 was starting to get a fair bit less noisy, only having unacceptable levels of noise in the shadows.</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_1_CBbunny.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_4_CBbunny.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_16_CBbunny.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">64 samples, on the other hand, resolved most of the issues, but the slightest amount of noise can be seen in the shadow around the bunny still. Also, one interesting thing we noticed with the light sampling is that even on higher samples, the edges never get perfectly crisp as can be seen below, which seems to be a disadvantage of the technique.</p>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_64_CBbunny.png" alt="2" class="center">
 		<br>
 		<br>
 		
-		<h3><b>Part 4: Global Illumination</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Our indirect lighting function is just an extension of our direct lighting function. To get indirect lighting, instead of starting a ray from the camera, we pretend that we started the ray from a point on the mesh. Then, we sample a bunch of outgoing rays given by a predetermined quantity, and get the lighting from there, and dimming it based on the distance traveled. Furthermore, we call the function recursively based on the number of bounces we want, such that we get indirect indirect lighting and so on. Finally, we add up all the lighting from all our bounces and return the L_out as at_least_one_bounce_illumination(). Here are a few scenes rendered with global illumination with 1024 samples:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt1_gbl_bench.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt1_gbl_bunny.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt1_gbl_spheres.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">We picked the banana scene to test direct and indirect lighting individually. The first is direct, which looks like this:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt2_direct_banana.png" alt="2" class="center">
-		<p style="color: #DBDEE1; width: 100%">The other is indirect, which looks like this:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt2_indirect_banana.png" alt="2" class="center">
-		<p style="color: #DBDEE1; width: 100%">These differences are actually really cool. The indirect lighting looks like the banana is the middle of mist, with all reflections diffused (which makes sense). Altogether, a very neat comparison!. Now, we rendered images with max_ray_depth set to 0, 1, 2, 3, 4, and 5, shown below in order:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd0.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd1.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd2.png" alt="0">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd3.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd4.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd5.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">The differences between these were very interesting, but not unexpected. Since isAccumBounces was set to false, we are only seeing the light that gets added to the scene each step. So, logically, each step should get dimmer and dimmer. Thus, beyond the initial 0-1 bounces, the second and third bounces have the greatest impact on the image. They change how soft the lighting is in the scene, since it makes the shadows lighter, and the brighter areas more averaged. Thus, these steps will make the scene feel more well lit.</p>
-		<p style="color: #DBDEE1; width: 100%">Below are the same renders, but with isAccumBounces set to true:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd0.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd1.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd2.png" alt="0">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd3.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd4.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd5.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">Very cool! Below are the Russian Roulette renders with max_ray_depth at 0, 1, 2, 3, 4, and 100 respectively:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd0.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd1.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd2.png" alt="0">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd3.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd4.png" alt="0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd5.png" alt="0">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">Super neat! And finally, we picked the bridge for the final render. The renders with sample rates 1, 2, 4, 8, 16, and 64 can be seen below:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1.png" alt="0" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp2.png" alt="0" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp4.png" alt="0" class="center">
-			</div>
-		</div>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp8.png" alt="0" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp16.png" alt="0" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp64.png" alt="0" class="center">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">And finally, the beautiful finished image rendered with 1024 samples!</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1024.png" alt="2" class="center">
+		<h3><b>Part 4: Handling Self-Collisions</b></h3>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 
 		<br>
 		<br>
 		
-		<h3><b>Part 5: Adaptive Sampling</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Adaptive sampling is simply checking that the illumination in our pixel has converged after repeated samples. What adaptive sampling allows us to do is take our data (mean and variance) and check whether our data has converged by checking whether the standard deviation over the number of samples times a 95% confidence interval is below our mean times a small constant which is our convergence threshold. If our data falls below the threshold, the data has converged. Unfortunately, if our threshold is too high or our batch size for convergence checks is too low, we can end up with data that looks like it has converged due to a low probability, without actually converging, resulting in aliasing in the form of out of place pixels. </p>
-		<p style="color: #DBDEE1; width: 100%">Here is the image of the banana before and after it was struck with some drugs -- uh, I mean, rendered with the adaptive sampling rate.</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana.png" alt="0" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/transition2.png" alt="2" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana_rate.png" alt="0" class="center">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%">Here's another image we decided to render: The comfy bench:</p>
-		<div class="row">
-  			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench.png" alt="2" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/transition2.png" alt="2" class="center">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench_rate.png" alt="2" class="center">
-			</div>
-		</div>
+		<h3><b>Part 5: Shaders</b></h3>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
+		<br>
+		<br>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
-
-		<p style="color: #DBDEE1; width: 100%">- For one part of our extra credit, we implemented a slightly modified surface area heuristic for splitting our BVH. A naive implementation would be to simply split the iterators in the middle. Our implementation during the project was to split our BVH into two pieces where the difference in the x, y, or z values of the centroid of the new bounding boxes was highest. Thinking back on this, this would have not been good since we could still have many primitives together, causing our algorithm to be slow. In a crazy turn of events, we created a pseudo-surface area heuristic for the BVH split calculation. Essentially, we split the bounding box into either the x, y, or z dimension such that the sum of the surface areas of the new bounding boxes were minimized using the following calculations. </p>
-		<p style="color: #DBDEE1; width: 100%"> double x_area_sum = 2 * (dot(xl_whl, shift_matrix * xl_whl)) + 2 * (dot(xr_whl, shift_matrix * xr_whl)); </p>
-		<p style="color: #DBDEE1; width: 100%"> double y_area_sum = 2 * (dot(yl_whl, shift_matrix * yl_whl)) + 2 * (dot(yr_whl, shift_matrix * yr_whl)); </p>
-		<p style="color: #DBDEE1; width: 100%"> double z_area_sum = 2 * (dot(zl_whl, shift_matrix * zl_whl)) + 2 * (dot(zr_whl, shift_matrix * zr_whl)); </p>
-		<p style="color: #DBDEE1; width: 100%"> Our render times were significantly increased on meshes with high vertex counts. For meshedit/maxplanck.dae rendering vertex normals with 32 samples per pixel 1 max ray depth and 8 threads, the naive render time was on average 70.7611 seconds, while our original BVH algorithm took 15.3384 and our surface area calculations reduced it to 4.4695. Even more interesting is that sky/blob.dae took 140.4924s with the naive algorithm, 48.6838s with our original, and 4.5969 with our extra credit on average using the same settings. This is honestly a crazy improvement which I wish we had while rendering the images for task 4 and 5.</p>
+		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
 		<br>
-		<p style="color: #DBDEE1; width: 100%">- For the second part of our extra credit, we made it so that our algorithm did not create a new vector each time for the BVH nodes. Instead, we used the sort function for std::vectors. Instead, we sorted the vectors we had using comparator functions and our heuristic, and indexed the BVH by setting the middle iterator to start + (start - end) / 2 while recursing. This improved our memory for high vertex meshes such as peter and CBlucy by a factor of square rooting it. This crazy improvement allowed us to render multiple images at once on our pcs. Our record was 10 renders at once before hitting a blue screen whereas our previous one was 2 for sky/blob.dae.</p>
-		<br>
-
-		<p style="color: #DBDEE1; width: 100%">- In order to better our arithmetic, in our calculations that required division or square rooting, we instead multiplied both sides of the operation where possible in order to reduce the number of arithmetic calls we had to do. One big example of this is the calculation of our max tolerance, algorithm highlighted below. </p>
-		<p style="color: #DBDEE1; width: 100%">I = 3.8416 * variance / i;
-		if (I <= maxTolerance * maxTolerance * mean * mean) {
-			break;
-		} </p> 
-		<p style="color: #DBDEE1; width: 100%">Based on our analysis of our work, our biggest barrier is lighting calculations using direct and indirect lighting. Unfortunately, there is nothing we can really do about lighting with simple analysis, but we noticed that we can calculate the one bounce radiance, then use the values calculated here to also calculate further bounces. Unfortunately this might not be the best idea since there are quite a few issues with exact calculations, but using this heuristic can greatly help us. We feel like this might be a potential final project idea to expand upon that.</p>
-		<br>
-
 		<br>
 
 		<h3><b>Afterthoughts</b></h3>
