@@ -230,15 +230,37 @@
 		<h3><b>Part 5: Adaptive Sampling</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Adaptive sampling is simply checking that the illumination in our pixel has converged after repeated samples. What adaptive sampling allows us to do is take our data (mean and variance) and check whether our data has converged by checking whether the standard deviation over the number of samples times a 95% confidence interval is below our mean times a small constant which is our convergence threshold. If our data falls below the threshold, the data has converged. Unfortunately, if our threshold is too high or our batch size for convergence checks is too low, we can end up with data that looks like it has converged due to a low probability, without actually converging, resulting in aliasing in the form of out of place pixels. </p>
 		<p style="color: #DBDEE1; width: 100%">Here is the image of the banana before and after it was struck with some drugs -- uh, I mean, rendered with the adaptive sampling rate.</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana.png" alt="2" class="center">
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana_rate.png" alt="2" class="center">
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana.png" alt="0" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/transition.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana_rate.png" alt="0" class="center">
+			</div>
+		</div>
 		<p style="color: #DBDEE1; width: 100%">Here's another image we decided to render: The comfy bench:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench.png" alt="2" class="center">
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench_rate.png" alt="2" class="center">
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/transition.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench_rate.png" alt="2" class="center">
+			</div>
+		</div>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
 		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
-		
+		<br>
+		<br>
+
+		<h3><Afterthoughts</b></h3>
+		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
 		<br>
 		<br>
 	</body>
