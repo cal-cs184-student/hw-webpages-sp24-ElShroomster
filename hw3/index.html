@@ -263,6 +263,8 @@
 		<p style="color: #DBDEE1; width: 100%"> double z_area_sum = 2 * (dot(zl_whl, shift_matrix * zl_whl)) + 2 * (dot(zr_whl, shift_matrix * zr_whl)); </p>
 		<p style="color: #DBDEE1; width: 100%"> Our render times were significantly increased on meshes with high vertex counts. For meshedit/maxplanck.dae rendering vertex normals with 32 samples per pixel 1 max ray depth and 8 threads, the naive render time was on average 70.7611 seconds, while our original BVH algorithm took 15.3384 and our surface area calculations reduced it to 4.4695. Even more interesting is that sky/blob.dae took 140.4924s with the naive algorithm, 48.6838s with our original, and 4.5969 with our extra credit on average using the same settings. This is honestly a crazy improvement which I wish we had while rendering the images for task 4 and 5.</p>
 		<br>
+		<p style="color: #DBDEE1; width: 100%">- For the second part of our extra credit, we made it so that our algorithm did not create a new vector each time for the BVH nodes. Instead, we used the sort function for std::vectors. Instead, we sorted the vectors we had using comparator functions and our heuristic, and indexed the BVH by setting the middle iterator to start + (start - end) / 2 while recursing. This improved our memory for high vertex meshes such as peter and CBlucy by a factor of square rooting it. This crazy improvement allowed us to render multiple images at once on our pcs. Our record was 10 renders at once before hitting a blue screen whereas our previous one was 2 for sky/blob.dae.</p>
+		<br>
 		<br>
 	</body>
 </html>
