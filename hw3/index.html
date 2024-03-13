@@ -51,7 +51,6 @@
 		
 		<h3><b>Part 2: Bounding Volume Hierarchy</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Our BVH construction algorithm was very simple. We would take a start and end iterator for our primitives that should be in a current node. If the primitive count is under our node threshold, we simply store the primitive iterators in our node. Otherwise, we test to see which axis to split our primitives on by finding the axis split that results in an even split of the primitives giving both sides almost even volume. We calculate this by finding the overall centroid and putting primitives on their respective sides. Then, we use the iterators to sort our sub-array and recurse with the left and right nodes being the left and right (x, y, or z) of this centroid. Normal shading for a few large dae files are shown below: </p>
-		
 		<div class="row">
 			<div class="column">
 			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/maxplanck.png" alt="0">
@@ -64,7 +63,8 @@
 		  </div>
 	  </div>
 
-		<p style="color: #DBDEE1; width: 100%">We tested the rendering speeds on the files meshedit/cow.dae and meshedit/beetle.dae. The cow without the BVH took 31.7701 seconds on average, while the BVH shortened this down to .2939 seconds on average. Meanwhile, the beetle took .4954 seconds on average with the BVH while without a BVH it took 39.1173, which is quite similar in terms of ratio. If a BVH is truly O(logn) traversal whereas without the BVH acceleration is O(n) for all primitives, then we can reconstruct the number of primitives in the image, which using a calculator for gives very close results for both the cow and the beetle. Clearly, BVH is superior and no smart person should render an image without it. I wouldn't even wish it upon my worst enemy to render an image without BVH acceleration. </p>
+		<p style="color: #DBDEE1; width: 100%">We tested the rendering speeds on the files meshedit/cow.dae and meshedit/beetle.dae. The cow without the BVH took $31.7701$ seconds on average, while the BVH shortened this down to $.2939$ seconds on average. Meanwhile, the beetle took $.4954$ seconds on average with the BVH while without a BVH it took $39.1173$, which is a similar speedup. If a BVH is truly $O(\log(n))$ and without the BVH acceleration is $O(n)$ for all primitives, then we can reconstruct the number of primitives in the image, which using a calculator for gives very close results for both the cow and the beetle. </p>
+		<p style="color: #DBDEE1; width: 100%">Clearly, BVH is superior and no smart person should render an image without it. I wouldn't even wish it upon my worst enemy to render an image without BVH acceleration.</p>
 		<br>
 		<br>
 		
@@ -222,7 +222,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp64.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">And finally, the beautiful final image rendered with 1024 samples!</p>
+		<p style="color: #DBDEE1; width: 100%">And finally, the beautiful finished image rendered with 1024 samples!</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1024.png" alt="2" class="center">
 
 		<br>
