@@ -153,6 +153,78 @@
 			</div>
 		</div>
 		<p style="color: #DBDEE1; width: 100%">The differences between these were very interesting, but not unexpected. Since isAccumBounces was set to false, we are only seeing the light that gets added to the scene each step. So, logically, each step should get dimmer and dimmer. Thus, beyond the initial 0-1 bounces, the second and third bounces have the greatest impact on the image. They change how soft the lighting is in the scene, since it makes the shadows lighter, and the brighter areas more averaged. Thus, these steps will make the scene feel more well lit.</p>
+		<p style="color: #DBDEE1; width: 100%">Below are the same renders, but with isAccumBounces set to true:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd0.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd2.png" alt="0">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd3.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd4.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd5.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Very cool! Below are the Russian Roulette renders with max_ray_depth at 0, 1, 2, 3, 4, and 100 respectively:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd0.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd2.png" alt="0">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd3.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd4.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd5.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Super neat! And finally, we picked the bridge for the final render. The renders with sample rates 1, 2, 4, 8, 16, and 64 can be seen below:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp4.png" alt="0">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp8.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp16.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp64.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">And finally, the beautiful final image rendered with 1024 samples!</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1024.png" alt="2" class="center">
+
 		<br>
 		<br>
 		
