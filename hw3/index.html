@@ -39,7 +39,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/lucy.png" alt="0">
 			</div>
 			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/empty.png" alt="1">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/cow.png" alt="1">
 			</div>
 			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
@@ -49,34 +49,26 @@
 		<br>
 		
 		
-		<h3><b>Part 2: Bezier Surfaces with Separable 1D de Casteljau</b></h3>
-		<p style="color: #DBDEE1; width: 100%">This part was pretty similar to part one. EvaluateStep() was identical to the one in Part 1 except that it used Vector3D instead of Vector2D. Evalulate1D() was also pretty straightforward, as it just duplicates the input array and then uses a while loop to call evaluateStep() on it until the length of the vector is one. It then can return the only value in the vector, which in this case is located at return_vec[0].</p>
-		<p style="color: #DBDEE1; width: 100%">Now, the final function was a touch more complex. In this one we had to iterate through the vector of vectors and call evaluate1D() on each one with $u$ as an input to get a new vector of points. This then gave us a vector of values on the parallel Bezier curves, which when we called evaluate1D() on it with $v$ as an input, gave us our final value on the surface.</p>
+		<h3><b>Part 2: Bounding Volume Hierarchy</b></h3>
 		<p style="color: #DBDEE1; width: 100%">The teapot rendered after the task can be seen below:</p>
+		
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/teapottask2.png" alt="teapot_basic">
 		<br>
 		<br>
 		
-		<h3><b>Part 3: Area-Weighted Vertex Normals</b></h3>
-		<p style="color: #DBDEE1; width: 100%"> To implement area weighted vertex normals, we first looped through every face that is adjacent to our vertex. After validating that our face isn't a boundary, we  then calculate the area of the triangle by using the norm of the cross product of vertex positions divided by two. This calculation helped us a lot, since otherwise having to use trignometric functions would have slowed down our code. Finally, we stored the weighted normal of each face in a Vector3D which we then squished into a unit vector at the end. This completes our algorithm. Below are screenshots of our code at work. The image on the left showcases flat shading, and the image on the right showcases our newly implemented Phong shading: </p>
-
+		<h3><b>Part 3: Direct Illumination</b></h3>
+		<p style="color: #DBDEE1; width: 100%">hi</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/flat_and_phong.png" alt="flat_and_phong_teapot">
-		
-		<p style="color: #DBDEE1; width: 100%"> This part of the assignment was not very hard and we had no issues implementing code or debugging, giving us false hope for the next three parts. </p>
-
 		<br>
-		<h3><b>Part 4: Edge Flip</b></h3>
-		<p style="color: #DBDEE1; width: 100%">To implement edge flips, we simply had to reassign the pointers of each edge's vertices to the pointers of edge vertices one half edge away, right? Wrong. There are FAR too many pointers here to even think about doing that. First, we ignore all boundary edges by using the isBoundary() function. For each vertex, we first update the halfedge pointer to the new one after flipping. Then, we modify the neighbors of each halfedge using setNeighbors and set the new face, edge, vertex, next, and twin pointers for each half edge. Finally, we set the face and edge pointers so that every single pointer is reassigned properly. </p>
-		<p style="color: #DBDEE1; width: 100%">Thankfully, we drew out the algorithm by hand before we implemented it, so we had no issues with pointer reassignment in this step. Unfortunately, we had issues with our naming convention, since our drawing and our variable names did not match, so we had to have a mental map of drawn edge/halfedge/vertex to variable name, which made the coding process very long and tedious. Looking back, we are so glad that this part of the assignment didn't give us any issues in terms of debugging. Below are screenshots of quadball before and after a couple flips:</p>
-
+		<br>
+		
+		<h3><b>Part 4: Global Illumination</b></h3>
+		<p style="color: #DBDEE1; width: 100%">hi</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/edgeflipboth.png" alt="quadball_normal_and_flipped">
-
 		<br>
 		<br>
 		
-		<h3><b>Part 5: Edge Split</b></b></h3>
-		<p style="color: #DBDEE1; width: 100%">Implementing edge splits was not terribly hard after we looked through the precise ordering of the algorithm. First, we ignored all boundary edges. We then created 6 new half edges, 2 new faces, 1 new vertex, and 3 new edges to represent this edge split. Then, according to a diagram we drew (and labeled as improvement from task 4), we copied over some code from the previous task and assigned the pointers correctly.</p>
-		<p style="color: #DBDEE1; width: 100%"> In terms of debugging, we had one issue with assigning isNew to the new edges/vertex that we could not figure out for a very long time. As it turns out, our issue was that we were assigning isNew at the top of the function, which we discovered after a helpful Ed poster, who we are immensely thankful for, mentioned that you cannot do this until the end. We also had some issues with assigning pointers correctly, since we used code from Task 4 without realizing that pointer assignment for edge flips and edge splits are greatly different.</p>
+		<h3><b>Part 5: Adaptive Sampling</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Below are images of cow.dae before and after some edge splits and edge splits and flips: </p>
 		<div class="row">
 			<div class="column">
@@ -91,60 +83,9 @@
 		</div>
 		<br>
 		
-		<h3><b>Part 6: Loop Subdivision for Mesh Upsampling</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Finally, we can make our meshes look cooler. Edge splits and flips allow us to upsample our mesh so that spheres look rounder (and cubes do too for some reason...). To upsample, we follow the guide in student_code.cpp as well as in the instructions. First, we compute new positions for all the vertices in our mesh using the loop subdivision rule. Here, we must be careful of the degree of the vertex since there are different algorithms for a vertex of degree 3 and otherwise. We then compute the new edge positions similarly.  At this point, we do not have to worry about anything, since an edge cannot have at most two vertices. Thirdly, we split each edge in our mesh, and carefully mark all the new vertices and edges so that we don't infinite loop. We must also make sure that our central vertex after each split is set to the old edge's new position calculated in step 2. </p>
-		<p style="color: #DBDEE1; width: 100%">After that, we must flip all edges connecting one new and one old vertex. We must do this because otherwise our splitting algorithm will cause us to have "dents" in our resulting mesh. Finally, we set the new vertex positions to the old ones that were calculated in step 1. Meshes like the teapot and cow seem to gain higher quality when subdividing, but other meshes like the cube seem to deform into a clay sphere that was accidentally dropped. The reason is that sharp corners and edges become smoother as the number of faces in the mesh increases. Below are screenshots of a torus having this issue. We also show a remedy to this issue which is pre-splitting edges around sharp corners:</p>
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_0.png" alt="torus_bad_0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_1.png" alt="torus_bad_1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_bad_2.png" alt="torus_bad_2">
-			</div>
-		</div>
-
-		<p style="color: #DBDEE1; width: 100%"> We fix this problem by pre-splitting edges near sharp corners. As we can see, the final torus maintains some of its sharp edges, such as in the center with a polygonal hole instead of a circular one.</p>
-		<div class="row">
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_0.png" alt="torus_good_0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_1.png" alt="torus_good_1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/torus_good_2.png" alt="torus_good_2">
-			</div>
-		</div>
-
-		<p style="color: #DBDEE1; width: 100%"> The cube below is an extreme image of a messed up before and after due to asymmetry. We then fix this by splitting each inner edge before upsampling. The reason this works is because each face of the cube has only one edge across it and in one direction (not necessarily symmetric for the whole cube), causing subdivision to make it asymmetric. Preprocessing allows us to make sure that each face has many edges going across, so that the upsampling is symmetric per face: </p>
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_normal.png" alt="cube_normal">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_dented.png" alt="cube_dented">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_deformed.png" alt="cube_deformed">
-			</div>
-		</div>
-		<p style="color: #DBDEE1; width: 100%"> After preprocessing: </p>
-		<div class="row">
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_normal.png" alt="cube_preprocessed_0">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_preprocessed_1.png" alt="cube_preprocessed_1">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw2/images/cube_preprocessed_2.png" alt="cube_preprocessed_2">
-			</div>
-		</div>
+		<h3><b>Part 6: Extra Credit</b></h3>
+		<p style="color: #DBDEE1; width: 100%">The teapot rendered after the task can be seen below:</p>
+		<br>
 		<br>
 	</body>
 </html>
