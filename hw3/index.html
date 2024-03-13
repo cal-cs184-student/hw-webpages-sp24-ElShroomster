@@ -117,7 +117,7 @@
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt2_direct_banana.png" alt="2" class="center">
 		<p style="color: #DBDEE1; width: 100%">The other is indirect, which looks like this:</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt2_indirect_banana.png" alt="2" class="center">
-		<p style="color: #DBDEE1; width: 100%">Now, we rendered images with max_ray_depth set to 0, 1, 2, 3, 4, and 5, shown below in order:</p>
+		<p style="color: #DBDEE1; width: 100%">These differences are actually really cool. The indirect lighting looks like the banana is the middle of mist, with all reflections diffused (which makes sense). Altogether, a very neat comparison!. Now, we rendered images with max_ray_depth set to 0, 1, 2, 3, 4, and 5, shown below in order:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd0.png" alt="0">
@@ -140,6 +140,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt3_bunny_rd5.png" alt="0">
 			</div>
 		</div>
+		<p style="color: #DBDEE1; width: 100%">The differences between these were very interesting, but not unexpected. Since isAccumBounces was set to false, we are only seeing the light that gets added to the scene each step. So, logically, each step should get dimmer and dimmer. Thus, beyond the initial 0-1 bounces, the second and third bounces have the greatest impact on the image. They change how soft the lighting is in the scene, since it makes the shadows lighter, and the brighter areas more averaged. Thus, these steps will make the scene feel more well lit.</p>
 		<br>
 		<br>
 		
