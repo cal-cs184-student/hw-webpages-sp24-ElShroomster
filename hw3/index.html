@@ -256,20 +256,12 @@
 
 		<h3><b>Part 6: Extra Credit</b></h3>
 		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
-<<<<<<< HEAD
 
 		<p style="color: #DBDEE1; width: 100%">- For one part of our extra credit, we implemented a slightly modified surface area heuristic for splitting our BVH. A naive implementation would be to simply split the iterators in the middle. Our implementation during the project was to split our BVH into two pieces where the difference in the x, y, or z values of the centroid of the new bounding boxes was highest. Thinking back on this, this would have not been good since we could still have many primitives together, causing our algorithm to be slow. In a crazy turn of events, we created a pseudo-surface area heuristic for the BVH split calculation. Essentially, we split the bounding box into either the x, y, or z dimension such that the sum of the surface areas of the new bounding boxes were minimized using the following calculations. </p>
 		<p style="color: #DBDEE1; width: 100%"> double x_area_sum = 2 * (dot(xl_whl, shift_matrix * xl_whl)) + 2 * (dot(xr_whl, shift_matrix * xr_whl)); </p>
 		<p style="color: #DBDEE1; width: 100%"> double y_area_sum = 2 * (dot(yl_whl, shift_matrix * yl_whl)) + 2 * (dot(yr_whl, shift_matrix * yr_whl)); </p>
 		<p style="color: #DBDEE1; width: 100%"> double z_area_sum = 2 * (dot(zl_whl, shift_matrix * zl_whl)) + 2 * (dot(zr_whl, shift_matrix * zr_whl)); </p>
 		<p style="color: #DBDEE1; width: 100%"> Our render times were significantly increased on meshes with high vertex counts. For meshedit/maxplanck.dae rendering vertex normals with 32 samples per pixel 1 max ray depth and 8 threads, the naive render time was on average 70.7611 seconds, while our original BVH algorithm took 15.3384 and our surface area calculations reduced it to 4.4695. Even more interesting is that sky/blob.dae took 140.4924s with the naive algorithm, 48.6838s with our original, and 4.5969 with our extra credit on average using the same settings. This is honestly a crazy improvement which I wish we had while rendering the images for task 4 and 5.</p>
-=======
-		<br>
-		<br>
-
-		<h3><Afterthoughts</b></h3>
-		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
->>>>>>> 92b10448a8eb72b2adb1d0631c2948baa999882f
 		<br>
 		<br>
 	</body>
