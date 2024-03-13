@@ -83,6 +83,20 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/edl_imp_spheres.png" alt="0">
 			</div>
 		</div>
+		<p style="color: #DBDEE1; width: 100%">The differences between these two are, honestly, quite obvious. We also tested light sampling, and the results were pretty interesting. 1, 4, and 16 samples were pretty similar, although 16 was starting to get a fair bit less noisy, only having unacceptable levels of noise in the shadows.</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_1_CBbunny.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_4_CBbunny.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_16_CBbunny.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">64 samples, on the other hand, resolved most of the issues, but the slightest amount of noise can be seen in the shadow around the bunny still. Also, one interesting thing we noticed with the light sampling is that even on higher samples, the edges never get perfectly crisp as can be seen below, which seems to be a disadvantage of the technique.</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task3/light_comp_64_CBbunny.png" alt="2" class="center">
 		<br>
 		<br>
 		
