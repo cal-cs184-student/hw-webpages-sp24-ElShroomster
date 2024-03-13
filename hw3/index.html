@@ -112,7 +112,7 @@
 		<br>
 		
 		<h3><b>Part 4: Global Illumination</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Our indirect lighting function is just an extension of our direct lighting function. To get indirect lighting, instead of starting a ray from the camera, we pretend that we started the ray from a point on the mesh. Then, we sample a bunch of outgoing rays given by a predetermined quantity, and get the lighting from there, and dimming it based on the distance traveled. Furthermore, we call the function recursively based on the number of bounces we want, such that we get indirect indirect lighting and so on. Finally, we add up all the lighting from all our bounces and return the L_out as at_least_one_bounce_illumination. Here are a few scenes rendered with global illumination with 1024 samples:</p>
+		<p style="color: #DBDEE1; width: 100%">Our indirect lighting function is just an extension of our direct lighting function. To get indirect lighting, instead of starting a ray from the camera, we pretend that we started the ray from a point on the mesh. Then, we sample a bunch of outgoing rays given by a predetermined quantity, and get the lighting from there, and dimming it based on the distance traveled. Furthermore, we call the function recursively based on the number of bounces we want, such that we get indirect indirect lighting and so on. Finally, we add up all the lighting from all our bounces and return the L_out as at_least_one_bounce_illumination(). Here are a few scenes rendered with global illumination with 1024 samples:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt1_gbl_bench.png" alt="0">
