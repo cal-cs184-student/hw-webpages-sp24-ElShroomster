@@ -51,21 +51,20 @@
 		
 		<h3><b>Part 2: Bounding Volume Hierarchy</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Our BVH construction algorithm was very simple. We would take a start and end iterator for our primitives that should be in a current node. If the primitive count is under our node threshold, we simply store the primitive iterators in our node. Otherwise, we test to see which axis to split our primitives on by finding the axis split that results in an even split of the primitives giving both sides almost even volume. We calculate this by finding the overall centroid and putting primitives on their respective sides. Then, we use the iterators to sort our sub-array and recurse with the left and right nodes being the left and right (x, y, or z) of this centroid. Normal shading for a few large dae files are shown below: </p>
-		
 		<div class="row">
 			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/dragon.png" alt="0">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/maxplanck.png" alt="1">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/peter.png" alt="2">
-		  </div>
-	  </div>
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/maxplanck.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/dragon.png" alt="1">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task2/peter.png" alt="2">
+			</div>
+		</div>
 
-		<p style="color: #DBDEE1; width: 100%">We tested the rendering speeds on the files meshedit/cow.dae and meshedit/beetle.dae. The cow without the BVH took 31.7701 seconds on average, while the BVH shortened this down to .2939 seconds on average. Meanwhile, the beetle took .4954 seconds on average with the BVH while without a BVH it took 39.1173, which is quite similar in terms of ratio. If a BVH is truly O(logn) traversal whereas without the BVH acceleration is O(n) for all primitives, then we can reconstruct the number of primitives in the image, which using a calculator for gives very close results for both the cow and the beetle. Clearly, BVH is superior and no smart person should render an image without it. I wouldn't even wish it upon my worst enemy to render an image without BVH acceleration. </p>
-		<br>
+		<p style="color: #DBDEE1; width: 100%">We tested the rendering speeds on the files meshedit/cow.dae and meshedit/beetle.dae. The cow without the BVH took $31.7701$ seconds on average, while the BVH shortened this down to $.2939$ seconds on average. Meanwhile, the beetle took $.4954$ seconds on average with the BVH while without a BVH it took $39.1173$, which is a similar speedup. If a BVH is truly $O(\log(n))$ and without the BVH acceleration is $O(n)$ for all primitives, then we can reconstruct the number of primitives in the image, which using a calculator for gives very close results for both the cow and the beetle. </p>
+		<p style="color: #DBDEE1; width: 100%">Clearly, BVH is superior and no smart person should render an image without it. I wouldn't even wish it upon my worst enemy to render an image without BVH acceleration.</p>
 		<br>
 		
 		<h3><b>Part 3: Direct Illumination</b></h3>
@@ -153,27 +152,93 @@
 			</div>
 		</div>
 		<p style="color: #DBDEE1; width: 100%">The differences between these were very interesting, but not unexpected. Since isAccumBounces was set to false, we are only seeing the light that gets added to the scene each step. So, logically, each step should get dimmer and dimmer. Thus, beyond the initial 0-1 bounces, the second and third bounces have the greatest impact on the image. They change how soft the lighting is in the scene, since it makes the shadows lighter, and the brighter areas more averaged. Thus, these steps will make the scene feel more well lit.</p>
+		<p style="color: #DBDEE1; width: 100%">Below are the same renders, but with isAccumBounces set to true:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd0.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd2.png" alt="0">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd3.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd4.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt4_bunny_rd5.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Very cool! Below are the Russian Roulette renders with max_ray_depth at 0, 1, 2, 3, 4, and 100 respectively:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd0.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd2.png" alt="0">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd3.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd4.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt5_bunny_rd5.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Super neat! And finally, we picked the bridge for the final render. The renders with sample rates 1, 2, 4, 8, 16, and 64 can be seen below:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1.png" alt="0" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp2.png" alt="0" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp4.png" alt="0" class="center">
+			</div>
+		</div>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp8.png" alt="0" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp16.png" alt="0" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp64.png" alt="0" class="center">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">And finally, the beautiful finished image rendered with 1024 samples!</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task4/pt6_bridge_spp1024.png" alt="2" class="center">
+
 		<br>
 		<br>
 		
 		<h3><b>Part 5: Adaptive Sampling</b></h3>
 		<p style="color: #DBDEE1; width: 100%">Adaptive sampling is simply checking that the illumination in our pixel has converged after repeated samples. What adaptive sampling allows us to do is take our data (mean and variance) and check whether our data has converged by checking whether the standard deviation over the number of samples times a 95% confidence interval is below our mean times a small constant which is our convergence threshold. If our data falls below the threshold, the data has converged. Unfortunately, if our threshold is too high or our batch size for convergence checks is too low, we can end up with data that looks like it has converged due to a low probability, without actually converging, resulting in aliasing in the form of out of place pixels. </p>
-		<div class="row">
-			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
-			</div>
-			<div class="column">
-				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
-			</div>
-		</div>
-		<br>
-		
+		<p style="color: #DBDEE1; width: 100%">Here is the image of the banana before and after it was struck with some drugs -- uh, I mean, rendered with the adaptive sampling rate.</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana.png" alt="2" class="center">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/banana_rate.png" alt="2" class="center">
+		<p style="color: #DBDEE1; width: 100%">Here's another image we decided to render: The comfy bench:</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench.png" alt="2" class="center">
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task5/bench_rate.png" alt="2" class="center">
+
 		<h3><b>Part 6: Extra Credit</b></h3>
-		<p style="color: #DBDEE1; width: 100%">The teapot rendered after the task can be seen below:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/task1/task1/spheres.png" alt="2">
+		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
+		
 		<br>
 		<br>
 	</body>
