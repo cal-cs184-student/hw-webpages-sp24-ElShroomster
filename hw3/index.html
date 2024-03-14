@@ -275,10 +275,46 @@
 		if (I <= maxTolerance * maxTolerance * mean * mean) {
 			break;
 		} </p> 
-		<p style="color: #DBDEE1; width: 100%">Based on our analysis of our work, our biggest barrier is lighting calculations using direct and indirect lighting. Unfortunately, there is nothing we can really do about lighting with simple analysis, but we noticed that we can calculate the one bounce radiance, then use the values calculated here to also calculate further bounces. Unfortunately this might not be the best idea since there are quite a few issues with exact calculations, but using this heuristic can greatly help us. We feel like this might be a potential final project idea to expand upon that.</p>
+		<p style="color: #DBDEE1; width: 100%"> Based on our analysis of our work, our biggest barrier is lighting calculations using direct and indirect lighting. Unfortunately, there is nothing we can really do about lighting with simple analysis, but we noticed that we can calculate the one bounce radiance, then use the values calculated here to also calculate further bounces. Unfortunately this might not be the best idea since there are quite a few issues with exact calculations, but using this heuristic can greatly help us. We feel like this might be a potential final project idea to expand upon that.</p>
+		<br>
+		
+		<p style="color: #DBDEE1; width: 100%"> Also, we implemented a custom made fancier adaptive sampling technique. The new technique we created consists of taking the mean of the existing set of rays and comparing it with the mean of the current batch. If the difference in these means is negligible, we have "converged". Below are pictures of first the previous sampling method and then our new adaptive sampler. </p>
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_1_banana.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_1_banana_rate.png" alt="2" class="center">
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_2_banana.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_2_banana_rate.png" alt="2" class="center">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%"> As you can see, we have an issue with random black pixels. This is because if the first batch mean is equivalent to the second batch mean, then we run into an issue where there is a high probability to simply say that the rays converged. This is even more of an issue with russian roulette since the probabilities add up. One fix would be to increase the number of bounces samples or samples per area light, but we found that we could fix it algorithmicly by decreasing the tolerance for the first batch and increasing it from then on. We then multiplied the tolerance by the inverse of the total rays sampled, allowing for our algorithm to converge effectively. This, unfortunately, yielded very similar results to the other adaptive sampling method. Overall, the speedup was a factor of 3x for the first version, but due to the bad convergence, wasn't a good tradeoff. For the second version, our speedup was just a few seconds for images that took approximately 30 seconds to render but the quality tradeoff was awesome. Below are images of this sampling with different dynamic threshold calculations (inverse and inverse square root).</p>
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_3_banana.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_3_banana_rate.png" alt="2" class="center">
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_4_banana.png" alt="2" class="center">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw3/images/extra_credit/adaptive_4_banana_rate.png" alt="2" class="center">
+			</div>
+		</div>
 		<br>
 
-		<br>
+		<p style="color: #DBDEE1; width: 100%"> Additionally, we modified our algorithms to use a stack instead of a recursive call. Unfortunately, this ended up useless, since after numerous tests with both big and small meshes, our removal of recursive calling did not yield any runtime improvements. Instead, on meshes with low vertex counts, the stack increased runtime by a few milliseconds. However, we noticed that our memory usage was significantly decreased on meshes with small vertex counts, cutting the memory usage by 1/4th. Unfortunately, it seemed like high vertex count images did not have the same benefit. We believe that this is because compiler optimizations like function inlining reduce the effectiveness of certain code modifications, but we were unable to figure out how to prove this. Overall, we feel like the stack datastructure implementation of recursive calls was a massive waste of time.</p>
 
 		<h3><b>Afterthoughts</b></h3>
 		<p style="color: #DBDEE1; width: 100%">We shall get to this :)</p>
