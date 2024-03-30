@@ -100,8 +100,91 @@
 		<br>
 		
 		<h3><b>Part 4: Handling Self-Collisions</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
-
+		<p style="color: #DBDEE1; width: 100%">Here are our three states of self collision. The left one showcases an early, initial self-collision, the one in the middle showcases a few more collisions down the line, and the right one showcases the cloth in its final resting place.</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/self_collision_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/self_collision_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/self_collision_3.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Sriram: Vary the density as well as ks and describe with words and screenshots how they affect the behavior of the cloth as it falls on itself.</p>
+		<p style="color: #DBDEE1; width: 100%">Now, we varied the density, starting with a low density setting. (Note, each 3 image format follows the same collision time part as the previous three screenshots.)</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_low_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_low_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_low_3.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Now, with a normal density setting:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_normal_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_normal_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_normal_3.png" alt="0">
+			</div>
+		</div>'
+		<p style="color: #DBDEE1; width: 100%">And, now, with a high density setting:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_high_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_high_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_high_3.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Now we vary the spring constant $ks$, which creates some neat effects. We start with a low spring constant:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_low_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_low_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_low_3.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Now we set $ks$ to a more normal spring constant value:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_normal_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_normal_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_normal_3.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Finally, we set $ks$ to be relatively high.</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_high_1.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_high_2.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_high_3.png" alt="0">
+			</div>
+		</div>
 		<br>
 		<br>
 		
