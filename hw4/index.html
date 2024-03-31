@@ -189,7 +189,59 @@
 		<br>
 		
 		<h3><b>Part 5: Shaders</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
+		<p style="color: #DBDEE1; width: 100%">Explain in your own words what is a shader program and how vertex and fragment shaders work together to create lighting and material effects.</p>
+		<p style="color: #DBDEE1; width: 100%">xplain the Blinn-Phong shading model in your own words. (Note, order goes ambient component left, diffuse component middle, specular component right, and the whole model below.)</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_1_ambient.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_2_diffuse.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_3_specular.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Here is the final image using the whole Blinn-Phong model.</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_4_all.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Here's our own texture mapped shader using a custom image texture. Quite snazzy!</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/texture_2.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Now, in this part we worked on the bump map. Our first image showcases just a simple bump map on the cloth and on the sphere:</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_bump.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Right here we have instead a displacement mapping on the same texture.</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_displacement.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Compare the above two renders and the approaches in your own words. (Sriram)</p>
+		<p style="color: #DBDEE1; width: 100%">And, below, we have the renders with the coarseness set to 16: (Bump left, displacement right.)</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_16_bump.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_16_displacement.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">We also have the renders with the coarseness set to 128: (Bump left, displacement right.)</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_128_bump.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_128_displacement.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Finally, we have the renders with our mirror shader:</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/mirror_cloth.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/mirror_pinned.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/mirror_sphere.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">Extra Credit: Explain what you did in your custom shader.</p>
 		<br>
 		<br>
 
