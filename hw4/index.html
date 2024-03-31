@@ -100,7 +100,7 @@
 		<br>
 		
 		<h3><b>Part 4: Handling Self-Collisions</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Here are our three states of self collision. The left one showcases an early, initial self-collision, the one in the middle showcases a few more collisions down the line, and the right one showcases the cloth in its final resting place.</p>
+		<p style="color: #DBDEE1; width: 100%">Unfortunately, if our cloth fell on itself, it would go right through (does this mean we were able to simulate a glitch in the matrix or was our code just glitchy?). To fix this, we implemented self-collisions. Since our cloth could be huge, we used a hash map heuristic, where vertices were hashed into place using their position in the world. Each NxNxN world coordinate grid housed a set of vertices which would then look at each other and check if there was a collision. This was a fast (but should have been buggy) heuristic. Here are our three states of self collision. The left one showcases an early, initial self-collision, the one in the middle showcases a few more collisions down the line, and the right one showcases the cloth in its final resting place. The final resting place was still vibrating quite a bit (possibly due to very shoddy practices in the self-collision calculations described in the spec).</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/self_collision_1.png" alt="0">
@@ -112,7 +112,6 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/self_collision_3.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Sriram: Vary the density as well as ks and describe with words and screenshots how they affect the behavior of the cloth as it falls on itself.</p>
 		<p style="color: #DBDEE1; width: 100%">Now, we varied the density, starting with a low density setting. (Note, each 3 image format follows the same collision time part as the previous three screenshots.)</p>
 		<div class="row">
   			<div class="column">
@@ -149,7 +148,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/density_high_3.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Now we vary the spring constant $ks$, which creates some neat effects. We start with a low spring constant:</p>
+		<p style="color: #DBDEE1; width: 100%">A higher density made the cloth fall flatter and more crumpled up, rather than smoothly on itself. This made it simulate what we would expect a gold foil falling on itself to look like (not like any of us know what that looks like D: ). With a higher density, the cloth seemed less likely to move due to self collisions, since the force of gravity acting on it was higher than the repulsive forces and springs pushing outwards. Now we vary the spring constant, which creates some neat effects. We start with a low spring constant:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_low_1.png" alt="0">
@@ -161,7 +160,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_low_3.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Now we set $ks$ to a more normal spring constant value:</p>
+		<p style="color: #DBDEE1; width: 100%">Now we set ks to a more normal spring constant value:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_normal_1.png" alt="0">
@@ -173,7 +172,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_normal_3.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Finally, we set $ks$ to be relatively high.</p>
+		<p style="color: #DBDEE1; width: 100%">Finally, we set ks to be relatively high.</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_high_1.png" alt="0">
@@ -185,12 +184,13 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task4/ks_high_3.png" alt="0">
 			</div>
 		</div>
+		<p style="color: #DBDEE1; width: 100%">The higher the spring constant got, the less the cloth fell on itself. Instead, the small springs pushed outwards on the cloth with higher force than gravity, and made the cloth fold more (I wish my clothes would automatically fold like this...).</p>
 		<br>
 		<br>
 		
 		<h3><b>Part 5: Shaders</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Explain in your own words what is a shader program and how vertex and fragment shaders work together to create lighting and material effects.</p>
-		<p style="color: #DBDEE1; width: 100%">xplain the Blinn-Phong shading model in your own words. (Note, order goes ambient component left, diffuse component middle, specular component right, and the whole model below.)</p>
+		<p style="color: #DBDEE1; width: 100%">For task 5, we implemented shaders, some similar to previous projects, and some new (such as the mirror shader). A shader program is essentially a program that runs on the GPU, where given certain parameters creates a value per pixel or vertex. Vertex shaders take the values given by the program (attributes and uniform variables), and create some sort of deformation in the shape. These shaders can change normals, position, and basically any physical propery of the inputs. A fragment shader on the other hand take geometric properties of fragments after the rasterization pipeline and create an out-color that specifies the color of the fragment. For our purposes, a fragment is equivalent to a pixel, however in the real world it can vary, being much smaller, or sometimes even larger than a pixel. Together, we can modify a physical attribute's position (displacement mapping for textures) to allow for material effects, and fragment shaders can create material and lighting effects by calculating incident light and even reflective color based on a environment map.</p>
+		<p style="color: #DBDEE1; width: 100%">The Blinn-Phong shading model is a semi-realistic lighting model that takes into account a few types of light in order to approximate shading. First, there is ambient light. This light is uniform for all parts of the object, creating a slightly bright aura. Then, there is direct lighting. This lighting comes from diffuse shading where the lighting is calculated using the normal vector between a camera view of a pixel and the the surface normal given a light position. Finally, it incorporates specular shading, which takes in the half vertex between the camera ray and a ray pointing to a light source, and uses that to create specular highlights. Below are images of (a) the ambient lighting of Blinn-Phong, (b) the diffuse lighting which is equivalent to diffuse shading, and (c) the specular highlight which creates a glint in the object. For the specular highlight, we decided to keep the light small (high p) because otherwise the glare messed with our render.</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_1_ambient.png" alt="0">
@@ -202,15 +202,30 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_3_specular.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Here is the final image using the whole Blinn-Phong model.</p>
+		<p style="color: #DBDEE1; width: 100%">Adding them together, this is what the final Blinn-Phong image looks like:</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/phong_4_all.png" alt="0">
-		<p style="color: #DBDEE1; width: 100%">Here's our own texture mapped shader using a custom image texture. Quite snazzy!</p>
+		<p style="color: #DBDEE1; width: 100%">We also implemented texture mapping in a manner very similar to project 1, but with a lot of the details abstracted away. Below is an image of my beautiful sexy face on a cloth above a sphere :)</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/texture_2.png" alt="0">
-		<p style="color: #DBDEE1; width: 100%">Now, in this part we worked on the bump map. Our first image showcases just a simple bump map on the cloth and on the sphere:</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_bump.png" alt="0">
-		<p style="color: #DBDEE1; width: 100%">Right here we have instead a displacement mapping on the same texture.</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_displacement.png" alt="0">
-		<p style="color: #DBDEE1; width: 100%">Compare the above two renders and the approaches in your own words. (Sriram)</p>
+		<p style="color: #DBDEE1; width: 100%">Then, we worked on the bump map. I'm not entirely sure what the spec means by an image of the sphere, so to be safe, we included the sphere and then our cloth with the sphere. Our first image showcases just a simple bump map on the cloth and on the sphere:</p>
+		<p style="color: #DBDEE1; width: 100%">And, below, we have the renders with the coarseness set to 16: (Bump left, displacement right.)</p>
+		<div class="row">
+  			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_bump.png" alt="0">
+			</div>
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_bump_sphere.png" alt="0">
+			</div>
+		</div>
+		<p style="color: #DBDEE1; width: 100%">We compare this to displacement mapping on the same texture.</p>
+		<div class="row">
+			<div class="column">
+				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_displacement.png" alt="0">
+			</div>
+		  <div class="column">
+			<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_1_displacement_sphere.png" alt="0">
+		</div>
+	  	</div>
+		<p style="color: #DBDEE1; width: 100%">Bump mapping essentially allows us to take our two dimensional cloth in three dimensional space, and manipulate the normal vectors in order to get the visual effect that there are deformations on the cloth. Unfortunately, if you have a sharp eye, bump mapping feels artificial. On the other hand, displacement mapping takes the actual displacement map and uses a vertex shader to modify the cloth positions based on the given displacement. This mapping feels more natural, but unfortunately with a low vertex count feels wierd. Also, to use displacement mapping, you will have to significantly decrease the vertext height modifier and increase the normal, which may seem unnatural. </p>
 		<p style="color: #DBDEE1; width: 100%">And, below, we have the renders with the coarseness set to 16: (Bump left, displacement right.)</p>
 		<div class="row">
   			<div class="column">
@@ -220,6 +235,14 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_16_displacement.png" alt="0">
 			</div>
 		</div>
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_16_bump_sphere.png" alt="0">
+		  </div>
+		  <div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_16_displacement_sphere.png" alt="0">
+		  </div>
+	  	</div>
 		<p style="color: #DBDEE1; width: 100%">We also have the renders with the coarseness set to 128: (Bump left, displacement right.)</p>
 		<div class="row">
   			<div class="column">
@@ -229,7 +252,16 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_128_displacement.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Finally, we have the renders with our mirror shader:</p>
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_128_bump_sphere.png" alt="0">
+		  </div>
+		  <div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/map_2_128_displacement_sphere.png" alt="0">
+		  </div>
+	  	</div>
+		<p style="color: #DBDEE1; width: 100%">As you can see, bump mapping clearly looks smoother, for both types of spheres. Bump mapping for the smaller vertex sphere does not really change the geometry of the sphere, causing even the bumps to make the sphere look like a regular polygon, while bump mapping significantly deforms the vertices in order to make the sphere look less like a sphere and more like a "sphere" I would make in kindergarten with playdough. For the high vertex mesh though, bump mapping made the sphere look actually bumpy and like a sphere, whereas the displacement mapping made it look like a hairy furball (my cat would be proud). Overall, I am more of a fan of bump mapping. One cool thing to note is shader mapping happens towards the end of the rasterization pipeline, and displacement mapping with high displacement actually makes the mesh seem like it collides with itself or vertices are going through objects they shouldn't go through.</p>
+		<p style="color: #DBDEE1; width: 100%">Finally, we have the renders with our mirror shader, which was the coolest, most self explanatory, and easiest shader of all time to implement (maybe other than texture mapping because the function was literally given to us on a silver platter):</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/mirror_cloth.png" alt="0">
