@@ -14,21 +14,22 @@
   			};
 		</script>
  		<link rel="stylesheet" href="styling.css">
-		<Title>Homework 4 - Cloth Sim</Title>
+		<Title>Homework 4 - Clothsim</Title>
 	</head>
 	<body>
-		<h2>Homework 4 - <b>Cloth Sim</b></h2>
+		<h2>Homework 4 - <b>Clothsim</b></h2>
 		<center>
 		<h5 style="color: #DBDEE1">by Sriram Srivatsan &#40;sriram.srivatsan &#40;at&#41; berkeley.edu&#41; and Jaron Erba &#40;jaronerba &#40;at&#41; berkeley.edu&#41;</h5>
 		</center>
 		<a style="color: #DBDEE1", href="https://cal-cs184-student.github.io/hw-webpages-sp24-ElShroomster/"> Main Page </a>
 
 		<h3><b>Overview</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
+		<p style="color: #DBDEE1; width: 100%">The Clothsim project was all about simulating an almost physically accurate cloth mesh in real time. Unline project 3 where our renders took multiple minutes to render a scene, this project was much faster and could even be simulated real time with high fps. We used OpenGL, along with GPU acceleration and GLSL to achieve this! First, we started by creating a mesh representation of a square cloth using the mass and springs method. We had three types of springs, structural which attached vertices to ones directly adjacent in the cardinal directions, shearing which allowed us to connect these vertices diagonally, and bending which connected vertices two away from each other cardinally, each serving the purpose of making our simulation more realistic. Then, we used numeric integration to simulate the movement of the cloth given external forces. In order to make the simulation possible real time, we had to settle for an approximate calculation that incorporated only the position, velocity, and acceleration of the vertices. Then, we implemented collisions between the cloth mesh and other objects such as spheres and planes. Finally, we allowed the cloth to collide with itself, allowing for a more realistic 'cloth falling on a plane' animation which included folding and flattening of the cloth as it fell. Finally, we used GLSL to create cool shaders like we did in previous projects. The shaders included diffuse shading, Blinn-Phong, texturing, mirror simulation, bump mapping, and displacement mapping. Overall, this project was very interesting to work on, having a lot of depth in the topic while still being easy to understand.</p>
 		<br>
 		
 		<h3><b>Part 1: Masses And Springs </b></h3>
-		<p style="color: #DBDEE1; width: 100%">First of all, here is our wireframe with no constraints at all:</p>
+		<p style="color: #DBDEE1; width: 100%">In part one, we created the cloth mesh using vertices and springs connecting these vertices. We had structural springs that connected cardinally adjacent vertices, shearing springs that connected the vertices immediately diagonally, and bending springs that connected the vertices similar to structural but two apart. Structural springs allowed our mesh to have form, while shearing springs made sure that the cloth didn't stretch out unrestrictedly, and finally bending springs allowed the cloth to maintain a cloth-like shape without sharply folding at vertices. Below are images of the representation with specific springs.</p>
+		<p style="color: #DBDEE1; width: 100%">Here is our wireframe with no shearing constraints (only structural and bending):</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task1/pinned2_no_shear.png" alt="0">
 		<p style="color: #DBDEE1; width: 100%">Then, with shearing constraints only:</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task1/pinned2_only_shear.png" alt="0">
@@ -38,7 +39,9 @@
 		<br>
 		
 		<h3><b>Part 2: Simulation Via Numerical Integration</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Using the below images, describe the effects of changing the spring constant ks; how does the cloth behave from start to rest with a very low ks? A high ks? (Describe interesting differences, and also when they occur. Point out differences in the images.)</p>
+		<p style="color: #DBDEE1; width: 100%">By using each vertex's current position, it's previous position (allowing us to get it's velocity), and the current forces acting on it, we were able to simulate the movement of a cloth in real time. We used the most basic physics equation for an object in motion which takes in position, velocity, and acceleration. Here is the cloth in its final resting position after hanging from four pins (the color of the cloth represents its normal vector):</p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/pinned4.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Interestingly, changing certain parameters allowed us to get different simulations of the cloth coming to rest. The three images below represent a low, normal, and high spring constant acting upon the cloth in order. A smaller spring constant made the cloth seem more stretchy, making it stretch further to the ground due to gravity. A normal spring constant made it feel similar to a cotton shirt in terms of hanging from two pins. A very high spring constant made the cloth seem very un-elastic (like a wool sweater) where the cloth felt like it wanted to stay closer together. The higher spring constant converged quickest to its final state, followed by the normal constant, and finally the low spring constant kept wobbling about for a while.</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/ks_low.png" alt="0">
@@ -50,7 +53,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/ks_high.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Describe the effects of changing the density now. (Describe interesting differences, and also when they occur. Point out differences in the images.)</p>
+		<p style="color: #DBDEE1; width: 100%">Density on the other hand seemed to make the cloth more affected by gravity in its final resting state. Unlike the spring constant, a higher density didn't mean that the cloth converged to a resting state quicker. Rather, all it did was make the final state more pulled downwards. This would make sense because gravitational force emits a constant acceleration despite an object's mass. The higher density meant that the force acting on the vertices downwards was higher than the spring pulling it upwards. Below are images of a cloth with low, normal, and high density in order, showing these observations:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/density_low.png" alt="0">
@@ -62,7 +65,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/density_high.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Describe the effects of changing the damping now. (Describe interesting differences, and also when they occur. Point out differences in the images.)</p>
+		<p style="color: #DBDEE1; width: 100%">Changing the damping allowed us to simulate a cloth which became thicker and thicker. Low damping looked almost like a satin cloth, whereas normal damping was analogous to cotton, and a high damping simulated a wool cloth. Low damping made it so that the cloth did not converge at all, which makes sense since there are not many forces stopping the cloth such as friction or heat being created. Medium damping was our reference point for a normal cloth, and a high damping cloth literally fell into convergance right away since there were few forces acting upon it that could actually move the cloth more than the damping prevented. Below are images of our cloth failing to converge with low damping, and the final resting states of normal and high damping in order:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/damping_low.png" alt="0">
@@ -74,13 +77,12 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/damping_high.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Here is the shaded cloth in its final resting position. (Note to Sriram: If you chose to use different parameters than the default ones, please list them.)</p>
-		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task2/pinned4.png" alt="0">
+		
 		<br>
 		<br>
 		
 		<h3><b>Part 3: Handling Collisions with Other Objects</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Here is the shaded cloth with $ks$ values of 500, 5000, and 50000 respectively.</p>
+		<p style="color: #DBDEE1; width: 100%">In part three, we simulated collisions of the cloth with other objects, namely spheres and planes. We used a heuristic calculation, which simply read that if a vertex lands on the other side of a surface than where it was in the previous step, the cloth collided with the object. To correct its course, we simpy moved the object to the surface where it collided before passing through and simulated this correction distance with a little bit of friction to simulate the cloth getting stuck on the object as it fell. Below is the shaded cloth falling on a sphere, with the cloth having spring constant values of 500, 5000, and 50000 respectively:</p>
 		<div class="row">
   			<div class="column">
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task3/sphere_ks_500.png" alt="0">
@@ -92,9 +94,7 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task3/sphere_ks_50000.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Sriram: (Describe the differences in the results.)</p>
-		<p style="color: #DBDEE1; width: 100%">Did you do what is below?</p>
-		<p style="color: #DBDEE1; width: 100%">Show us a screenshot of your shaded cloth lying peacefully at rest on the plane. If you haven't by now, feel free to express your colorful creativity with the cloth! (You will need to complete the shaders portion first to show custom colors.)</p>
+		<p style="color: #DBDEE1; width: 100%">A low spring constant made the cloth droopy, falling on the sphere and almost wrapping around it if it weren't for gravity. A normal spring constant acted as if my t-shirt would if it fell on top of the sphere. Finally, a high spring constant made the cloth stop moving due to an object in the way, but didn't allow the cloth to wrap around gracefully. Instead, the cloth tried to (although very poorly) imitate a sheet of printer paper fluttering around (think very stiff but still malleable). Here is a cloth resting peacefully on a plane. Unfortunately, this plane isn't the one that flies in the sky from airport to airport, which made us sad (and it should make you sad too).</p>
 		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task3/plane.png" alt="0">
 		<br>
 		<br>
@@ -194,7 +194,7 @@
 		<br>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
-		<p style="color: #DBDEE1; width: 100%">Placeholder</p>
+		<p style="color: #DBDEE1; width: 100%">TODO!!!!</p>
 		<br>
 		<br>
 	</body>
