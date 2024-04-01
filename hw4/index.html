@@ -282,35 +282,34 @@
 		<p style="color: #DBDEE1; width: 100%">Notice how there is brightness coming from directions looking at light sources, not reflecting off the surface. We then added a refractive coefficient, allowing us to simulate this light, then we took advantage of the alpha level to make the image seem transparent. This also meant that parts of the image that were hidden were brighter as long as they were translucently visible to light. Below are some neat images of this shader: </p>
 		<div class="row">
 			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_1.png" alt="0">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_2.png" alt="0">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_3.png" alt="0">
-		  </div>
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_1.png" alt="0">
+		  	</div>
+		 	<div class="column">
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_2.png" alt="0">
+		  	</div>
+		  	<div class="column">
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_3.png" alt="0">
+		  	</div>
 	  	</div>
 		<br>
 		<br>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
-		<p style="color: #DBDEE1; width: 100%">For part one of our extra credit, we implemented a custom wind simulation without referring to any outside resources. We treated wind similarly to all other forces, and even added to the custom UI to allow toggling wind and messing with its settings. The way we implemented wind was very simple. We had wind in the x and z directions along with a downforce. We noticed that if wind was constant, the cloth would converge very quickly, so we made the wind force variable. We did this using Bezier curves and lerps, having the lerp float as the timestep. This worked pretty well, but we noticed that it was pretty repetitive. To fix this, we allowed changing the bezier curve intermediate values, along with the volatility, which is the rate at which the timestep increases. This allowed us to simulate both slow and fast winds and winds that varied a lot like a storm. We noticed that this also got quite repetitive, so we implemented randomness which could be toggled. With randomness, the timestamp increments randomly with respect to the volatility. Also, each vertex on the mesh would get a randomly generated wind force with mean being the given wind force. This made the wind simulation very realistic. Below is a video of the wind simulation in effect: https://www.youtube.com/embed/TmAufzg0Z5c?si=TjEDGOwMquXq8RGI</p>
+		<p style="color: #DBDEE1; width: 100%">For part one of our extra credit, we implemented a custom wind simulation without referring to any outside resources. We treated wind similarly to all other forces, and even added to the custom UI to allow toggling wind and messing with its settings. The way we implemented wind was very simple. We had wind in the x and z directions along with a downforce. We noticed that if wind was constant, the cloth would converge very quickly, so we made the wind force variable. We did this using Bezier curves and lerps, having the lerp float as the timestep. </p>
+		<p style="color: #DBDEE1; width: 100%">This worked well enough, but we noticed that it was pretty repetitive. To fix this, we allowed changing the Beizer curve intermediate values, along with the volatility, which is the rate at which the timestep increases. This allowed us to simulate both slow and fast winds and winds that varied a lot like a storm. We noticed that this also got quite repetitive, so we implemented randomness which could be toggled. With randomness, the timestamp increments randomly with respect to the volatility. Also, each vertex on the mesh would get a randomly generated wind force with mean being the given wind force. This made the wind simulation very realistic. Below is a video of the wind simulation in effect: https://www.youtube.com/embed/TmAufzg0Z5c?si=TjEDGOwMquXq8RGI</p>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/TmAufzg0Z5c?si=TjEDGOwMquXq8RGI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-		<p style="color: #DBDEE1; width: 100%">For the second part of the extra credit, we implemented bouncing on surfaces. Using the bounce button, you could toggle cloth bounces. Doing this proved very simple although quite technical. We approximate the current cloth velocity vector as the difference between the last_position and the current position. In order to trick the simulation into bouncing, we simply checked for collisions, and if a collision occured, we would update the vertex's position as well as the last position as the inverse last position point centered on the new position. This worked wonders, since now the cloth bounces every time it collides with a surface. Below are images showing frames of bounced cloths:</p>
+		<p style="color: #DBDEE1; width: 100%">For the second part of the extra credit, we implemented bouncing on surfaces. Using the bounce button, you could toggle cloth bounces. Doing this proved very simple although quite technical. We approximate the current cloth velocity vector as the difference between the last_position and the current position. In order to trick the simulation into bouncing, we simply checked for collisions, and if a collision occurred, we would update the vertex's position as well as the last position as the inverse last position point centered on the new position. This worked wonders, since now the cloth bounces every time it collides with a surface. Below are images showing frames of bounced cloths:</p>
 		<div class="row">
 			<div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_1.png" alt="0">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_2.png" alt="0">
-		  </div>
-		  <div class="column">
-			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_3.png" alt="0">
-		  </div>
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_1.png" alt="0">
+		  	</div>
+		  	<div class="column">
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_2.png" alt="0">
+		  	</div>
+		  	<div class="column">
+			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_3.png" alt="0">
+		  	</div>
 	  	</div>
-		<br>
-		<br>
 	</body>
 </html>
