@@ -277,7 +277,20 @@
 				<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/task5/mirror_sphere.png" alt="0">
 			</div>
 		</div>
-		<p style="color: #DBDEE1; width: 100%">Extra Credit: Explain what you did in your custom shader.</p>
+		<p style="color: #DBDEE1; width: 100%">Extra Credit: For our custom shader we implemented translucent refraction shaders. Unfortunately, this shader simulation does not allow us to test what values are being hit and what isn't by our camera rays, so we had to improvise. Interestingly, the previous parts had the insides of the cloth lit up as long as the rays were in the direction of the light source. What we did was a heuristic model where we update the Blinn Phong model to take into account refractive light. We do this by taking the flipped normal and a ray going from the camera into the plane. This alone gave the lighting below: </p>
+		<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/refract_only.png" alt="0">
+		<p style="color: #DBDEE1; width: 100%">Notice how there is brightness coming from directions looking at light sources, not reflecting off the surface. We then added a refractive coefficient, allowing us to simulate this light, then we took advantage of the alpha level to make the image seem transparent. This also meant that parts of the image that were hidden were brighter as long as they were translucently visible to light. Below are some neat images of this shader: </p>
+		<div class="row">
+			<div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_1.png" alt="0">
+		  </div>
+		  <div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_2.png" alt="0">
+		  </div>
+		  <div class="column">
+			  <img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/custom_3.png" alt="0">
+		  </div>
+	  	</div>
 		<br>
 		<br>
 
