@@ -295,7 +295,7 @@
 		<br>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
-		<p style="color: #DBDEE1; width: 100%">TODO!!!!</p>
+		<p style="color: #DBDEE1; width: 100%">For part one of our extra credit, we implemented a custom wind simulation without referring to any outside resources. We treated wind similarly to all other forces, and even added to the custom UI to allow toggling wind and messing with its settings. The way we implemented wind was very simple. We had wind in the x and z directions along with a downforce. We noticed that if wind was constant, the cloth would converge very quickly, so we made the wind force variable. We did this using Bezier curves and lerps, having the lerp float as the timestep. This worked pretty well, but we noticed that it was pretty repetitive. To fix this, we allowed changing the bezier curve intermediate values, along with the volatility, which is the rate at which the timestep increases. This allowed us to simulate both slow and fast winds and winds that varied a lot like a storm. We noticed that this also got quite repetitive, so we implemented randomness which could be toggled. With randomness, the timestamp increments randomly with respect to the volatility. Also, each vertex on the mesh would get a randomly generated wind force with mean being the given wind force. This made the wind simulation very realistic. Below is a video of the wind simulation in effect:</p>
 		<br>
 		<br>
 	</body>
