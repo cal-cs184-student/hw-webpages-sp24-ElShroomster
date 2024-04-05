@@ -295,10 +295,11 @@
 		<br>
 
 		<h3><b>Part 6: Extra Credit</b></h3>
-		<p style="color: #DBDEE1; width: 100%">For part one of our extra credit, we implemented a custom wind simulation without referring to any outside resources. We treated wind similarly to all other forces, and even added to the custom UI to allow toggling wind and messing with its settings. The way we implemented wind was very simple. We had wind in the x and z directions along with a downforce. We noticed that if wind was constant, the cloth would converge very quickly, so we made the wind force variable. We did this using Bezier curves and lerps, having the lerp float as the timestep. </p>
+		<p style="color: #DBDEE1; width: 100%">For part one of our extra credit (not including custom shaders), we implemented a custom wind simulation without referring to any outside resources. We treated wind similarly to all other forces, and even added to the custom UI to allow toggling wind and messing with its settings. The way we implemented wind was very simple. We had wind in the x and z directions along with a downforce. We noticed that if wind was constant, the cloth would converge very quickly, so we made the wind force variable. We did this using Bezier curves and lerps, having the lerp float as the timestep. </p>
 		<p style="color: #DBDEE1; width: 100%">This worked well enough, but we noticed that it was pretty repetitive. To fix this, we allowed changing the Beizer curve intermediate values, along with the volatility, which is the rate at which the timestep increases. This allowed us to simulate both slow and fast winds and winds that varied a lot like a storm. We noticed that this also got quite repetitive, so we implemented randomness which could be toggled. With randomness, the timestamp increments randomly with respect to the volatility. Also, each vertex on the mesh would get a randomly generated wind force with mean being the given wind force. This made the wind simulation very realistic. Below is a video of the wind simulation in effect: https://www.youtube.com/embed/TmAufzg0Z5c?si=TjEDGOwMquXq8RGI</p>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/TmAufzg0Z5c?si=TjEDGOwMquXq8RGI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+		<br>
+		<br>
 		<p style="color: #DBDEE1; width: 100%">For the second part of the extra credit, we implemented bouncing on surfaces. Using the bounce button, you could toggle cloth bounces. Doing this proved very simple although quite technical. We approximate the current cloth velocity vector as the difference between the last_position and the current position. In order to trick the simulation into bouncing, we simply checked for collisions, and if a collision occurred, we would update the vertex's position as well as the last position as the inverse last position point centered on the new position. This worked wonders, since now the cloth bounces every time it collides with a surface. Below are images showing frames of bounced cloths:</p>
 		<div class="row">
 			<div class="column">
@@ -311,6 +312,8 @@
 			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/bounce_3.png" alt="0">
 		  	</div>
 	  	</div>
+		<br>
+		<br>
 		<p style="color: #DBDEE1; width: 100%">For the third part of the extra credit, we implemented a few more primitive shapes.</p>
 		<div class="row">
 			<div class="column">
@@ -323,7 +326,7 @@
 			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/np_circle.png" alt="0">
 		  	</div>
 	  	</div>
-		<p style="color: #DBDEE1; width: 100%">Placeholder.</p>
+		<p style="color: #DBDEE1; width: 100%">As you can see, these shapes are squares and circles. These collision objects can be rotated in the x, y, and z directions which you can see below. Honestly, this part of the assignment was the most fun because we got to learn the internal workings of the entire renderer instead of just what we were abstracted and given. We can expand these shapes into the 3D domain, such as putting six squares together to form a cube or making a cylinder out of lines and the circles. Unfortunately, these shapes are currently flat in one dimension, meaning the cloth mesh can have vertices pass through and pull the entire mesh through using correction which we implemented in task 2 to prevent crazy movements. Also, if the planes normals are not parallel to external forces, the cloth can slip through in a weird way, meaning we need to have friction set to 100. We believe this can be solved by implementing collisions with springs, but that would be very costly and weird. For now, enjoy some awesome new shapes!!!</p>
 		<div class="row">
 			<div class="column">
 			  	<img src="https://raw.githubusercontent.com/cal-cs184-student/hw-webpages-sp24-ElShroomster/master/hw4/images/extra_credit/np_slanted_square.png" alt="0">
